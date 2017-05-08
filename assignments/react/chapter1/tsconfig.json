@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "target": "es5",
+    "sourceMap": false,
+    "module": "commonjs",
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.old.ts",
+    "**/*.old/*"
+  ]
+}
