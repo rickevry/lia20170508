@@ -70,11 +70,9 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
             group : group
         };
 
-        this.setState((origState) => {
-            let newState = React.addons.update(origState, { currentColor: { $set: currentColor } });
-            return newState;
-        });
-
+        let newState =  {... this.state};
+        newState.currentColor = currentColor;
+        this.setState(newState);
     }
 
     handleColorMouseOut(e: any) {
@@ -84,10 +82,10 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
             group: -1
         };
 
-        this.setState((origState) => {
-            let newState = React.addons.update(origState, { currentColor: { $set: currentColor } });
-            return newState;
-        });
+        let newState =  {... this.state};
+        newState.currentColor = currentColor;
+        this.setState(newState);
+
     }
 
     renderColorDiv(row:any, group: number, rowIndex:number, columnIndex:number) {

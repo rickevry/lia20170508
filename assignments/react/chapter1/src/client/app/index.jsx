@@ -6,11 +6,12 @@ import { Provider, connect } from 'react-redux';
 import ColorPicker from './ColorPicker';
 
 var pack = {
-    renderColorPicker(domNode) {
-        render(<AutoCompleteTest />, domNode);
+    renderColorPicker(colors, selectedColor, domNode) {
+        render(<ColorPicker colors={colors} selectedColor={selectedColor} />, domNode);
     }
 };
 
 module.exports = pack;
 
 
+// colors, "#9E9B9B", document.getElementById('colorPickerDiv'
