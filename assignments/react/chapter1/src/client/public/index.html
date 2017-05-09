@@ -1,13 +1,14 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>React.js using NPM, Babel6 and Webpack</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-with-addons.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-dom.js"></script>
-    <script src="../../public/pmcoreui.js" type="text/javascript"></script>
-    <script src="https://use.fontawesome.com/b61583d9c2.js"></script>
 
-    <style>
+<head>
+  <meta charset="utf-8">
+  <title>React.js using NPM, Babel6 and Webpack</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-with-addons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-dom.js"></script>
+  <script src="../../public/pmcoreui.js" type="text/javascript"></script>
+  <script src="https://use.fontawesome.com/b61583d9c2.js"></script>
+
+  <style>
 .dropdown {
     position: relative;
     display: inline-block;
@@ -26,14 +27,14 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
-#pickedColorDisplay{
+.pickedColorDisplay{
   width: 80%;
   height: 5px;
   background-color: red;
   margin: 10 auto;
   border: 1px solid #ffffff;
 }
-#colorPickerExpand {
+.colorPickerExpand {
   text-align: center;
   width: 40px;
   height: 30px;
@@ -43,80 +44,131 @@
   background-color: #EEEEEE;
 }
 </style>
-  </head>
-  <body>  
-  <div id="colorPickerComponent">
+</head>
+
+<body>
+  <div id="toolbarComponent">
+    <div id="toolbarOptionsSelection">
+      <ul>
+        <li>Shape Options</li>
+        <li>Text Options</li>
+      </ul>
+    </div>
+
+    <div id="shapeOptionsComponent">
+      <!--Rendered-->
+      <!--<div id="toolbarFill">
+        <form>
+          <input type="radio" name="fillOption" value="noFill">No fill</br>
+          <input type="radio" name="fillOption" value="solidFill" checked>Solid fill</br>
+          <input type="text" id="selectedFillColor" hidden>
+        </form>
+        <span>Color</span>
+        <div id="colorPickerComponent">
+        </div>
+      </div>-->
+      <!--<div id="toolbarLine">
+        <form>
+          <input type="radio" name="lineOption" value="noLine"/>No line<br/>
+          <input type="radio" name="lineOption" value="solidLine" checked/>Solid line<br/>
+          <input type="text" id="selectedLineColor" hidden/>
+        </form>
+        <span>Color</span>
+        <div id="colorPickerComponent2">
+        </div>
+      </div>-->
+      <!--<div id="toolbarPosition">
+        <form>
+          Horizontal position<input type="number" name="horizontalPosition" min="0" step="0.1"/> 
+          Vertical position<input type="number" name="verticalPosition" min="0" step="0.1"/>
+        </form>
+      </div>-->
+      <!--<div id="toolbarSize">
+        <form>
+          Height (cm) <input type="number" name="heightSize" min="0" step="0.01"/> 
+          Width (cm) <input type="number" name="widthSize" min="0" step="0.01"/>
+          Rotation <input type="number" name="rotationSize" min="0" max="360" step="1">
+        </form>
+      </div>-->
+      <!--<div id="test">
+      </div>-->
+    </div>
   </div>
-
   <br/>
   <br/>
   <br/>
 
-<script>
-  var colors = {
-    standardColors:[
-      { mainColor: "#FFFFFF" },
-      { mainColor: "#000000" },
-      { mainColor: "#E1E0E0" },
-      { mainColor: "#354257" },
-      { mainColor: "#4A88CB" },
-      { mainColor: "#E76826" },
-      { mainColor: "#949494" },
-      { mainColor: "#FDB409" },
-      { mainColor: "#355CB7" },
-      { mainColor: "#5FA137" }
-    ],
-  columns: [
-      {
-        mainColor: "#FFFFFF",
-        colors: ["#EFEFEF","#CFCFCF","#B1B1B1","#949494","#6C6C6C"]
-      },
-      {
-        mainColor: "#000000",
-        colors: ["#6C6C6C","#474747","#303030","#1C1C1C","#0B0B0B"]
-      },
-      {
-        mainColor: "#E1E0E0",
-        colors: ["#C5C3C3","#9E9B9B","#625D5D","#2C2A2A","#121111"]
-      },
-      {
-        mainColor: "#354257",
-        colors: ["#CCD3DE","#9DAABE","#7284A0","#26303E","#1A1F28"]
-      },
-      {
-        mainColor: "#4A88CB",
-        colors: ["#D7E6F3","#B0CDEA","#8CB6DE","#2560A6","#183C65"]
-      },
-      {
-        mainColor: "#E76826",
-        colors: ["#F9DFCC","#F3C09C","#F0A271","#B74510","#6F2C0C"]
-      },
-      {
-        mainColor: "#949494",
-        colors: ["#E8E9E8","#D3D3D3","#BDBDBD","#686868","#414141"]
-      },
-      {
-        mainColor: "#FDB409",
-        colors: ["#FFEFC1","#FDE187","#FED253","#B17F05","#6B4E02"]
-      },
-      {
-        mainColor: "#355CB7",
-        colors: ["#D0DAEF","#A6B9E1","#7C98D2","#243F84","#182851"]
-      },
-      {
-        mainColor: "#5FA137",
-        colors: ["#DCECD0","#BADBA4","#99C87B","#436F28","#2A461B"]
+  <script>
+    var colors = {
+      standardColors: [
+        { mainColor: "#FFFFFF" },
+        { mainColor: "#000000" },
+        { mainColor: "#E1E0E0" },
+        { mainColor: "#354257" },
+        { mainColor: "#4A88CB" },
+        { mainColor: "#E76826" },
+        { mainColor: "#949494" },
+        { mainColor: "#FDB409" },
+        { mainColor: "#355CB7" },
+        { mainColor: "#5FA137" }
+      ],
+      columns: [
+        {
+          mainColor: "#FFFFFF",
+          colors: ["#EFEFEF", "#CFCFCF", "#B1B1B1", "#949494", "#6C6C6C"]
+        },
+        {
+          mainColor: "#000000",
+          colors: ["#6C6C6C", "#474747", "#303030", "#1C1C1C", "#0B0B0B"]
+        },
+        {
+          mainColor: "#E1E0E0",
+          colors: ["#C5C3C3", "#9E9B9B", "#625D5D", "#2C2A2A", "#121111"]
+        },
+        {
+          mainColor: "#354257",
+          colors: ["#CCD3DE", "#9DAABE", "#7284A0", "#26303E", "#1A1F28"]
+        },
+        {
+          mainColor: "#4A88CB",
+          colors: ["#D7E6F3", "#B0CDEA", "#8CB6DE", "#2560A6", "#183C65"]
+        },
+        {
+          mainColor: "#E76826",
+          colors: ["#F9DFCC", "#F3C09C", "#F0A271", "#B74510", "#6F2C0C"]
+        },
+        {
+          mainColor: "#949494",
+          colors: ["#E8E9E8", "#D3D3D3", "#BDBDBD", "#686868", "#414141"]
+        },
+        {
+          mainColor: "#FDB409",
+          colors: ["#FFEFC1", "#FDE187", "#FED253", "#B17F05", "#6B4E02"]
+        },
+        {
+          mainColor: "#355CB7",
+          colors: ["#D0DAEF", "#A6B9E1", "#7C98D2", "#243F84", "#182851"]
+        },
+        {
+          mainColor: "#5FA137",
+          colors: ["#DCECD0", "#BADBA4", "#99C87B", "#436F28", "#2A461B"]
+        }
+      ]
+    };
+
+    ReactRenderer.renderShapeOptions("noFill", "solidLine", document.getElementById('shapeOptionsComponent'));
+
+    ReactRenderer.renderColorPicker(colors, "#9E9B9B", "0", document.getElementById('colorPickerComponent0'),
+      function (result) {
+        alert(result.color);
       }
-    ]
-  };
-
-  ReactRenderer.renderColorPicker(colors, "#9E9B9B", document.getElementById('colorPickerComponent'),
-          function(result) {
-            alert(result.color);
-          }
-  );
-
-</script>
+    );
+    ReactRenderer.renderColorPicker(colors, "#9E9B9B", "1", document.getElementById('colorPickerComponent1'),
+      function (result) {
+        alert(result.color);
+      }
+    );
+  </script>
 </body>
-</html>
 
+</html>

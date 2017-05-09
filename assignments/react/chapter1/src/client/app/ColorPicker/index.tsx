@@ -17,6 +17,8 @@ class ColorPickerProps {
     public colors:any;
     public selectedColor:any;
     public callback:any;
+    public pickerId:any;
+    
 }
 
 export default class ColorPicker extends React.Component<ColorPickerProps, any> {
@@ -28,7 +30,8 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
                 rowIndex : -1,
                 columnIndex : -1
             },
-            selectedColor: this.props.selectedColor
+            selectedColor: this.props.selectedColor,
+            pickerId: this.props.pickerId
         };
     }
 
@@ -104,15 +107,6 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         );
     }
 
-    getButtonStyle(){
-        let color = this.state.selectedColor;
-        console.log("Getting style with color: " + color);
-        return  {
-            padding: 10,
-            color: color
-        };
-    }
-
     getColorDivStyle(color:any, hoover: boolean) {
         var css = {
             position:'relative',
@@ -163,11 +157,10 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
     }
 
     toggleColorPicker(e){
-        let element = document.getElementById("colorPickerDiv");
+        var key = e.target.getAttribute("data-key");
+        let element = document.getElementById("colorPickerDiv"+key);
         element.style.display = element.style.display === 'none' ? '' : 'none';       
     }
-
-
 
 
     render() {
@@ -175,23 +168,24 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         return ( 
             <div>
                 {
-                    <div id="colorPickerExpand" className="dropdown" onClick={this.toggleColorPicker}>
-                        <i className="fa fa-paint-brush" aria-hidden="true"></i>
-                         <div style={{backgroundColor: this.state.selectedColor}} id="pickedColorDisplay"></div>
-                    </div>
-                    }
-                {<div style={{display: 'none'}} id="colorPickerDiv" className="dropdown-content">
-                <span>Theme Colors</span>
+                <div data-key={this.props.pickerId} id={"colorPickerExpand"+this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
+                    <i data-key={this.props.pickerId} className="fa fa-paint-brush" aria-hidden="true"></i>
+                        <div style={{backgroundColor: this.state.selectedColor}} className="pickedColorDisplay" id={"pickedColorDisplay"+this.props.pickerId}></div>
+                </div>
+                }
+                {
+                <div style={{display: 'none'}} id={"colorPickerDiv"+this.props.pickerId} className="dropdown-content">
+                    <span>Theme Colors</span>
                     <div>
-                    {this.props.colors.columns.map( (colorColumn,index) => { return this.renderColumn(1, colorColumn,index) })}
+                        {this.props.colors.columns.map( (colorColumn,index) => { return this.renderColumn(1, colorColumn,index) })}
                     </div>
                     <div style={{marginTop:10}}>
                     <div>
-                    <div></div>
-                    Standard Colors
+                        <div></div>
+                        <span>Standard Colors</span>
                     </div>
                     <div style={{display:'inline-block'}}>
-                    {this.props.colors.standardColors.map( (colorColumn,index) => { return this.renderColumn(2, colorColumn,index) })}
+                        {this.props.colors.standardColors.map( (colorColumn,index) => { return this.renderColumn(2, colorColumn,index) })}
                     </div>
                 </div>
                 </div>}
