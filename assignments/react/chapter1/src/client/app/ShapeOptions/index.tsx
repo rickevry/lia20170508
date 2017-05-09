@@ -36,9 +36,18 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        this.setState({
+        //TODO DOES NOT WORK PROPERLY - Kolla på react-numeric-input
+        if(event.target.getAttribute('data-unitType') === 'cm'){
+            this.setState({
+            [name]: value + " cm"
+        });
+        }else{
+            this.setState({
             [name]: value
         });
+        }
+
+        
     }
 
     render() {
@@ -79,7 +88,7 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
                 }{
                     <div id="toolbarSize">
                         <form>
-                            Height (cm) <input type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange}/>
+                            Height (cm) <input placeholder="3,47 cm" data-unitType="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange}/>
                             Width (cm) <input type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange}/>
                             Rotation <input type="number" name="rotation" min="0" max="360" step="1" onChange={this.handleInputChange} />
                         </form>
