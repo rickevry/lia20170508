@@ -7,7 +7,7 @@ import ColorPicker from './ColorPicker';
 
 var pack = {
     renderColorPicker(colors, selectedColor, domNode) {
-        render(<ColorPicker colors={colors} selectedColor={selectedColor} />, domNode);
+        render(<ColorPicker colors={colors} selectedColor={selectedColor}/>, domNode);
     }
 };
 

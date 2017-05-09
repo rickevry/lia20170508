@@ -5,10 +5,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-with-addons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-dom.js"></script>
     <script src="../../public/pmcoreui.js" type="text/javascript"></script>
-  </head>
-  <body>
+    <script src="https://use.fontawesome.com/b61583d9c2.js"></script>
 
-  <div id="colorPickerDiv">
+    <style>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    font-family: 'Tahoma', Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+#pickedColorDisplay{
+  width: 80%;
+  height: 5px;
+  background-color: red;
+  margin: 10 auto;
+  border: 1px solid #ffffff;
+}
+#colorPickerExpand {
+  text-align: center;
+  width: 40px;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #EEEEEE;
+}
+</style>
+  </head>
+  <body>  
+  <div id="colorPickerComponent">
   </div>
 
   <br/>
@@ -73,7 +110,7 @@
     ]
   };
 
-  ReactRenderer.renderColorPicker(colors, "#9E9B9B", document.getElementById('colorPickerDiv'),
+  ReactRenderer.renderColorPicker(colors, "#9E9B9B", document.getElementById('colorPickerComponent'),
           function(result) {
             alert(result.color);
           }

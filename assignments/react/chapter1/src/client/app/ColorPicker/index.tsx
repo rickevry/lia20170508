@@ -104,6 +104,15 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         );
     }
 
+    getButtonStyle(){
+        let color = this.state.selectedColor;
+        console.log("Getting style with color: " + color);
+        return  {
+            padding: 10,
+            color: color
+        };
+    }
+
     getColorDivStyle(color:any, hoover: boolean) {
         var css = {
             position:'relative',
@@ -141,33 +150,53 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         );
     }
 
+
     handleClick(color) {
         this.setState({
             selectedColor: color
         });
+        
         var result = {
             color: color
-        };
+        }
         this.props.callback && this.props.callback(result);
     }
 
+    toggleColorPicker(e){
+        let element = document.getElementById("colorPickerDiv");
+        element.style.display = element.style.display === 'none' ? '' : 'none';       
+    }
+
+
+
+
     render() {
-        var self = this;
-        return (
+        var self = this;        
+        return ( 
             <div>
-                <div>
+                {
+                    <div id="colorPickerExpand" className="dropdown" onClick={this.toggleColorPicker}>
+                        <i className="fa fa-paint-brush" aria-hidden="true"></i>
+                         <div style={{backgroundColor: this.state.selectedColor}} id="pickedColorDisplay"></div>
+                    </div>
+                    }
+                {<div style={{display: 'none'}} id="colorPickerDiv" className="dropdown-content">
+                <span>Theme Colors</span>
                     <div>
                     {this.props.colors.columns.map( (colorColumn,index) => { return this.renderColumn(1, colorColumn,index) })}
                     </div>
-                </div>
-                {/*<div style={{marginTop:10}}>
+                    <div style={{marginTop:10}}>
                     <div>
+                    <div></div>
                     Standard Colors
                     </div>
-                    <div style={{disdplay:'inline-block'}}>
+                    <div style={{display:'inline-block'}}>
                     {this.props.colors.standardColors.map( (colorColumn,index) => { return this.renderColumn(2, colorColumn,index) })}
                     </div>
-                </div>*/}
+                </div>
+                </div>}
+                
+                     
             </div>
 
         );
