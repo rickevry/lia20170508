@@ -156,8 +156,8 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         this.props.callback && this.props.callback(result);
     }
 
-    toggleColorPicker(e){
-        var key = e.target.getAttribute("data-key");
+    toggleColorPicker(event) {
+        var key = event.target.getAttribute("data-key");
         let element = document.getElementById("colorPickerDiv"+key);
         element.style.display = element.style.display === 'none' ? '' : 'none';       
     }

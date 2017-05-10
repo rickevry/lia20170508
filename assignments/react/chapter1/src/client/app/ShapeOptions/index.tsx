@@ -42,13 +42,27 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
             });
     }
 
-    render() {
-        // return <div style={{ backgroundColor: this.state.fillColor }}>Hellu from {this.state.fill}</div>;
+    toggleExpandTree(event) {
 
+        let target = event.target.nextSibling;     
+        let element = document.getElementById(target.id);
+
+        element.style.display = element.style.display === 'none' ? '' : 'none';    
+    }
+
+
+
+    render() {
         return (
             <div>
                 {
-                    <div id="toolbarFill">
+                    //TODO MAKE THE BEEPING ARROW TURN
+                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Fill</div>
+                    
+                }
+                {   
+                    <div id="toolbarFill" style={{display: 'none'}}>
+                    <hr/>
                         <form>
                             <input type="radio" name="fill" value="noFill" onChange={this.handleInputChange} checked={this.state.fill === 'noFill'} />No fill<br />
                             <input type="radio" name="fill" value="solidFill" onChange={this.handleInputChange} checked={this.state.fill === 'solidFill'} />Solid fill<br />
@@ -57,29 +71,41 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
                         <span>Color</span>
                         <div id="colorPickerComponent0">
                         </div>
-                    </div>
+                       <hr/>
+                    </div>                    
                 }
                 {
-                    <div id="toolbarLine">
+                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Line</div>
+                }
+                {
+                    <div id="toolbarLine" style={{display: 'none'}}>
                         <form>
                             <input type="radio" name="line" value="noLine" onChange={this.handleInputChange} checked={this.state.line === 'noLine'} />No line<br />
                             <input type="radio" name="line" value="solidLine" onChange={this.handleInputChange} checked={this.state.line === 'solidLine'} />Solid line<br />
                             <input type="text" id="lineColor" hidden />
                         </form>
                         <span>Color</span>
+                        
                         <div id={"colorPickerComponent1"}>
                         </div>
                     </div>
                 }
                 {
-                    <div id="toolbarPosition">
+                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Position</div>
+                }
+                {
+                    <div id="toolbarPosition" style={{display: 'none'}}>
                         <form>
                             Horizontal position<input type="number" name="posH" min="0" step="0.1" onChange={this.handleInputChange} />
                             Vertical position<input type="number" name="posV" min="0" step="0.1" onChange={this.handleInputChange} />
                         </form>
                     </div>
-                }{
-                    <div id="toolbarSize">
+                }
+                {
+                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Size</div>
+                }
+                {
+                    <div id="toolbarSize" style={{display: 'none'}}>
                         <form>
                             Height (cm) <input placeholder="3,47 cm" data-unitType="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange} />
                             Width (cm) <input type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange} />
@@ -88,7 +114,10 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
                     </div>
                 }
                 {
-                    <div id="test">
+                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>output</div>
+                }
+                {
+                    <div id="test" style={{display: 'none'}}>
                         {this.state.fill}<br />
                         {this.state.line}<br />
                         {this.state.posH}<br />
