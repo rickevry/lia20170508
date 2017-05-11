@@ -37,17 +37,43 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
         const name = target.name;
 
 
-            this.setState({
-                [name]: value
-            });
+        this.setState({
+            [name]: value
+        });
     }
 
     toggleExpandTree(event) {
 
-        let target = event.target.nextSibling;     
+        let target = event.target.nextSibling;
         let element = document.getElementById(target.id);
 
-        element.style.display = element.style.display === 'none' ? '' : 'none';    
+        let targetChildren = event.target.children;
+
+        //declaration
+        let targetChildId: any;
+
+        // get the arrows parent
+        let arrowParent = event.target.parentElement;
+       // get the content div just below the title
+        let arrowParentSibling = arrowParent.nextSibling;
+        
+        // if the the arrow is clicked
+        if (targetChildren.length == 0) {
+            element = document.getElementById(arrowParentSibling.id);
+            targetChildId = arrowParent.children[0].id;
+        } else {
+            targetChildId = targetChildren[0].id;
+        }
+
+        //Changes the arrow and the display of the content
+        if (element.style.display === 'none') {
+            element.style.display = '';
+            document.getElementById(targetChildId).innerHTML = '&#9660;';
+
+        } else {
+            element.style.display = 'none';
+            document.getElementById(targetChildId).innerHTML = '&#9654;';
+        }
     }
 
 
@@ -56,68 +82,79 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
         return (
             <div>
                 {
-                    //TODO MAKE THE BEEPING ARROW TURN
-                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Fill</div>
-                    
+                    <div className="tree-view_arrow" style={{ display: 'block' }} onClick={this.toggleExpandTree}><span id="arrow0">&#9654;</span> Fill</div>
+
                 }
-                {   
-                    <div id="toolbarFill" style={{display: 'none'}}>
-                    <hr/>
-                        <form>
-                            <input type="radio" name="fill" value="noFill" onChange={this.handleInputChange} checked={this.state.fill === 'noFill'} />No fill<br />
+                {
+                    <div id="toolbarFill" style={{ display: 'none' }}>
+                        <form style={{ paddingLeft: 10 }}>
+                            <input style={{ marginBottom: 10 }} type="radio" name="fill" value="noFill" onChange={this.handleInputChange} checked={this.state.fill === 'noFill'} />No fill<br />
                             <input type="radio" name="fill" value="solidFill" onChange={this.handleInputChange} checked={this.state.fill === 'solidFill'} />Solid fill<br />
-                            <input type="text" id="fillColor" hidden />
                         </form>
-                        <span>Color</span>
-                        <div id="colorPickerComponent0">
+                        <span style={{ paddingLeft: 10 }}>Color</span>
+                        <div style={{ right: 0, position: 'absolute', zIndex: 9999, display: 'inline-block' }} id="colorPickerComponent0">
                         </div>
-                       <hr/>
-                    </div>                    
+                        <br />
+                        <br />
+                    </div>
                 }
                 {
-                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Line</div>
+                    <div className="tree-view_arrow" style={{ display: 'block' }} onClick={this.toggleExpandTree}><span id="arrow1">&#9654;</span> Line</div>
                 }
                 {
-                    <div id="toolbarLine" style={{display: 'none'}}>
-                        <form>
-                            <input type="radio" name="line" value="noLine" onChange={this.handleInputChange} checked={this.state.line === 'noLine'} />No line<br />
+                    <div id="toolbarLine" style={{ display: 'none' }}>
+                        <form style={{ paddingLeft: 10 }}>
+                            <input style={{ marginBottom: 10 }} type="radio" name="line" value="noLine" onChange={this.handleInputChange} checked={this.state.line === 'noLine'} />No line<br />
                             <input type="radio" name="line" value="solidLine" onChange={this.handleInputChange} checked={this.state.line === 'solidLine'} />Solid line<br />
-                            <input type="text" id="lineColor" hidden />
                         </form>
-                        <span>Color</span>
-                        
-                        <div id={"colorPickerComponent1"}>
+                        <span style={{ paddingLeft: 10 }}>Color</span>
+                        <div style={{ right: 0, position: 'absolute', zIndex: 9998, display: 'inline-block' }} id={"colorPickerComponent1"}>
                         </div>
+                        <br />
+                        <br />
                     </div>
                 }
                 {
-                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Position</div>
+                    <div className="tree-view_arrow" style={{ display: 'block' }} onClick={this.toggleExpandTree}><span id="arrow2">&#9654;</span> Position</div>
                 }
                 {
-                    <div id="toolbarPosition" style={{display: 'none'}}>
-                        <form>
-                            Horizontal position<input type="number" name="posH" min="0" step="0.1" onChange={this.handleInputChange} />
-                            Vertical position<input type="number" name="posV" min="0" step="0.1" onChange={this.handleInputChange} />
+                    <div id="toolbarPosition" style={{ display: 'none' }}>
+                        <form style={{ paddingLeft: 10 }}>
+                            <label style={{ display: 'inline-block', width: '100%' }}>Horizontal position<input style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posH" min="0" step="0.1" onChange={this.handleInputChange} /></label><br /><br />
+                            <label style={{ display: 'inline-block', width: '100%' }}>Vertical position<input style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posV" min="0" step="0.1" onChange={this.handleInputChange} /></label>
                         </form>
+                        <br />
                     </div>
                 }
                 {
-                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>Size</div>
+                    <div className="tree-view_arrow" style={{ display: 'block' }} onClick={this.toggleExpandTree}><span id="arrow3">&#9654;</span> Size</div>
                 }
                 {
-                    <div id="toolbarSize" style={{display: 'none'}}>
-                        <form>
-                            Height (cm) <input placeholder="3,47 cm" data-unitType="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange} />
-                            Width (cm) <input type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange} />
-                            Rotation <input type="number" name="rotation" min="0" max="360" step="1" onChange={this.handleInputChange} />
+                    <div id="toolbarSize" style={{ display: 'none' }}>
+                        <form style={{ paddingLeft: 10 }}>
+                            <label style={{ display: 'inline-block', width: '100%' }}> Height (cm)
+                           <input style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange} />
+                            </label>
+                            <br />
+                            <br />
+                            <label style={{ display: 'inline-block', width: '100%' }}> Width (cm)
+                            <input style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange} />
+                            </label>
+                            <br />
+                            <br />
+                            <label style={{ display: 'inline-block', width: '100%' }}> Rotation ( °)
+                            <input style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="°" type="number" name="rotation" min="0" max="360" step="1" onChange={this.handleInputChange} />
+                            </label>
                         </form>
+                        <br />
+                        <br />
                     </div>
                 }
                 {
-                    <div className="tree-view_arrow" style={{display: 'block'}} onClick={this.toggleExpandTree}>output</div>
+                    <div className="tree-view_arrow" style={{ display: 'block' }} onClick={this.toggleExpandTree}><span id="arrow4">&#9654;</span> output</div>
                 }
                 {
-                    <div id="test" style={{display: 'none'}}>
+                    <div id="test" style={{ display: 'none' }}>
                         {this.state.fill}<br />
                         {this.state.line}<br />
                         {this.state.posH}<br />

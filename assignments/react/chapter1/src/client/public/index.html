@@ -2,14 +2,18 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>React.js using NPM, Babel6 and Webpack</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-with-addons.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-dom.js"></script>
   <script src="../../public/pmcoreui.js" type="text/javascript"></script>
   <script src="https://use.fontawesome.com/b61583d9c2.js"></script>
-<style>
+  <style>
 body {
   font-family: 'Tahoma', Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  margin: 0;
+  padding: 0;
 }
 .dropdown {
     position: relative;
@@ -18,12 +22,13 @@ body {
 
 .dropdown-content {
     font-family: 'Tahoma', Verdana, Geneva, Tahoma, sans-serif;
-    position: absolute;
+    position: relative;
     background-color: #f9f9f9;
     min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
-    z-index: 1;
+    z-index: 9999;
+    clear: right;
 }
 
 .dropdown:hover .dropdown-content {
@@ -32,19 +37,21 @@ body {
 .pickedColorDisplay{
   width: 80%;
   height: 5px;
-  background-color: red;
-  margin: 10 auto;
+  margin: 0 auto;
   border: 1px solid #ffffff;
 }
 .colorPickerExpand {
   text-align: center;
   width: 40px;
-  height: 30px;
+  height: 20px;
   padding: 5px;
+  float: right;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  /*border-radius: 3px;*/
   background-color: #EEEEEE;
 }
+
+
 
 /*TreeView CSS*/
 
@@ -75,45 +82,45 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  color: #ff3300;
+  margin-bottom: 10px;
+}
+.tree-view_arrow > span {
+  color: #000;
+  font-size: 7;
 }
 
 .tree-view_arrow:before {
+  color: #000;
+  /*content: '▾';*/
+}
+
+/*arrow for colorPickerExpand*/
+.fa-paint-brush:after {
   content: '▾';
 }
-
-/* rotate the triangle to close it */
-.tree-view_arrow-collapsed {
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-}
-
-/*#toolbarFill {
-  display: none;
-}*/
 
 </style>
 </head>
 
 <body>
-  <div id="toolbarComponent">
+  <div style="padding: 10px; min-width: 250px" id="toolbarComponent">
     <div id="toolbarOptionsSelection">
-      <ul>
-        <li>Shape Options</li>
-        <li>Text Options</li>
-      </ul>
-    </div>
+      <ul style="-webkit-padding-start: 0px;">
+<li style="display: inline">Shape Options</li>
+<li style="display: inline">Text Options</li>
+</ul>
+</div>
 
-    <div id="shapeOptionsComponent">
-      <!--Rendered-->
-    </div>
-  </div>
-  <br/>
-  <br/>
-  <br/>
+<div id="shapeOptionsComponent">
+  <!--Rendered-->
+</div>
+</div>
+<br/>
+<br/>
+<br/>
 
-  <script>
+<script>
     var colors = {
       standardColors: [
         { mainColor: "#FFFFFF" },
@@ -173,7 +180,7 @@ body {
 
     ReactRenderer.renderShapeOptions("noFill", "solidLine", document.getElementById('shapeOptionsComponent'));
 
-   
+
 
     ReactRenderer.renderColorPicker(colors, "#9E9B9B", "0", document.getElementById('colorPickerComponent0'),
       function (result) {

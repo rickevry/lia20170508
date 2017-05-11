@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-function mergeCss(arg0:any,arg1:any,arg2?:any,arg3?:any,arg4?:any) {
+function mergeCss(arg0: any, arg1: any, arg2?: any, arg3?: any, arg4?: any) {
     var result = {};
-    for (var i=0; i<arguments.length; i++) {
+    for (var i = 0; i < arguments.length; i++) {
         var arg = arguments[i];
         if (arg) {
             Object.keys(arg).forEach(function (parentKey) {
@@ -14,21 +14,21 @@ function mergeCss(arg0:any,arg1:any,arg2?:any,arg3?:any,arg4?:any) {
 }
 
 class ColorPickerProps {
-    public colors:any;
-    public selectedColor:any;
-    public callback:any;
-    public pickerId:any;
-    
+    public colors: any;
+    public selectedColor: any;
+    public callback: any;
+    public pickerId: any;
+
 }
 
 export default class ColorPicker extends React.Component<ColorPickerProps, any> {
 
-    constructor(props:ColorPickerProps) {
+    constructor(props: ColorPickerProps) {
         super(props);
         this.state = {
             currentColor: {
-                rowIndex : -1,
-                columnIndex : -1
+                rowIndex: -1,
+                columnIndex: -1
             },
             selectedColor: this.props.selectedColor,
             pickerId: this.props.pickerId
@@ -46,8 +46,8 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
             marginRight: 4,
             //float:'left',
             width: this.width,
-            borderStyle:'none',
-            display:'inline-block'
+            borderStyle: 'none',
+            display: 'inline-block'
         };
     }
 
@@ -61,56 +61,66 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
             borderColor: '#B6B6B6',
             //float:'left',
             width: this.width,
-            borderStyle:'solid'
+            borderStyle: 'solid'
         };
     }
 
-    handleColorMouseOver(e: any,group:number,rowIndex:number, columnIndex:number) {
+    handleColorMouseOver(e: any, group: number, rowIndex: number, columnIndex: number) {
 
         var currentColor = {
-            rowIndex : rowIndex,
-            columnIndex : columnIndex,
-            group : group
+            rowIndex: rowIndex,
+            columnIndex: columnIndex,
+            group: group
         };
 
-        let newState =  {... this.state};
+        let newState = { ... this.state };
         newState.currentColor = currentColor;
         this.setState(newState);
     }
 
     handleColorMouseOut(e: any) {
         var currentColor = {
-            rowIndex : -1,
-            columnIndex : -1,
+            rowIndex: -1,
+            columnIndex: -1,
             group: -1
         };
 
-        let newState =  {... this.state};
+        let newState = { ... this.state };
         newState.currentColor = currentColor;
         this.setState(newState);
 
     }
 
-    renderColorDiv(row:any, group: number, rowIndex:number, columnIndex:number) {
+    renderColorDiv(row: any, group: number, rowIndex: number, columnIndex: number) {
         var hoover = ((this.state.currentColor.group == group) && (this.state.currentColor.rowIndex == rowIndex) && (this.state.currentColor.columnIndex == columnIndex));
         hoover = hoover || this.state.selectedColor == row;
 
         return (
             <div
-                key={rowIndex+"_"+columnIndex}
+                key={rowIndex + "_" + columnIndex}
                 style={this.getColorDivStyle(row, hoover)}
-                onMouseOver={ (e) => this.handleColorMouseOver(e,group, rowIndex, columnIndex ) }
-                onMouseOut={ (e) => this.handleColorMouseOut(e) }
-                onClick={ (e) => this.handleClick(row) }
-            >
+                onMouseOver={(e) => this.handleColorMouseOver(e, group, rowIndex, columnIndex)}
+                onMouseOut={(e) => this.handleColorMouseOut(e)}
+                onClick={(e) => this.handleClick(row)}
+                >
             </div>
         );
     }
+    getShadowStyle() {
+        return {
+            display: 'none',
+            top: 0, 
+            left: 0,
+            backgroundColor: 'rgba(0,0,0,0.3)',
+            width: '100%',
+            height: '100%'
+        };
+    }
 
-    getColorDivStyle(color:any, hoover: boolean) {
+    getColorDivStyle(color: any, hoover: boolean) {
         var css = {
-            position:'relative',
-            width:this.width,
+            position: 'relative',
+            width: this.width,
             height: 15,
             marginTop: 0,
             marginBottom: 0,
@@ -122,24 +132,24 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
             borderColor: '#ffffff',
             height: 13,
             zIndex: 100,
-            width: this.width-1,
-            borderStyle:'solid',
+            width: this.width - 1,
+            borderStyle: 'solid',
             borderWidth: 1,
             boxShadow: '0px 0px 1px 1px #444444'
         };
         return mergeCss(css, hoover && hooverCss);
     }
 
-    renderColumn(group:number, colorColumn:any,columnIndex:number) : any {
+    renderColumn(group: number, colorColumn: any, columnIndex: number): any {
         return (
-            <div key={"renderColumn1_"+columnIndex} style={this.getColumnOuterStyle()}>
-                <div key={"renderColumn2_"+columnIndex} style={this.getColumnInnerStyle()}>
+            <div key={"renderColumn1_" + columnIndex} style={this.getColumnOuterStyle()}>
+                <div key={"renderColumn2_" + columnIndex} style={this.getColumnInnerStyle()}>
                     {this.renderColorDiv(colorColumn.mainColor, group, -1, columnIndex)}
                 </div>
-                { colorColumn.colors &&
-                <div key={"renderColumn3_"+columnIndex} style={this.getColumnInnerStyle()}>
-                    {colorColumn.colors.map( (color, rowIndex) => { return this.renderColorDiv(color, group, rowIndex, columnIndex) })}
-                </div> }
+                {colorColumn.colors &&
+                    <div key={"renderColumn3_" + columnIndex} style={this.getColumnInnerStyle()}>
+                        {colorColumn.colors.map((color, rowIndex) => { return this.renderColorDiv(color, group, rowIndex, columnIndex) })}
+                    </div>}
             </div>
         );
     }
@@ -149,7 +159,7 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         this.setState({
             selectedColor: color
         });
-        
+
         var result = {
             color: color
         }
@@ -158,39 +168,49 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
 
     toggleColorPicker(event) {
         var key = event.target.getAttribute("data-key");
-        let element = document.getElementById("colorPickerDiv"+key);
-        element.style.display = element.style.display === 'none' ? '' : 'none';       
+        let element = document.getElementById("colorPickerDiv" + key);
+        let shadow = document.getElementById("shadow" + key);
+
+        if(shadow.style.position !== 'fixed'){
+            shadow.style.position = 'fixed';
+        }
+
+
+        //If shadow doesn't exists display it
+        shadow.style.display = shadow.style.display === 'none' ? '' : 'none';
+        element.style.display = element.style.display === 'none' ? '' : 'none';
     }
 
 
     render() {
-        var self = this;        
-        return ( 
+        var self = this;
+        return (
             <div>
+                <div data-key={this.props.pickerId} style={ this.getShadowStyle()} id={"shadow" + this.props.pickerId} onClick={this.toggleColorPicker}></div>
                 {
-                <div data-key={this.props.pickerId} id={"colorPickerExpand"+this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
-                    <i data-key={this.props.pickerId} className="fa fa-paint-brush" aria-hidden="true"></i>
-                        <div style={{backgroundColor: this.state.selectedColor}} className="pickedColorDisplay" id={"pickedColorDisplay"+this.props.pickerId}></div>
-                </div>
+                    <div data-key={this.props.pickerId} id={"colorPickerExpand" + this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
+                        <i data-key={this.props.pickerId} className="fa fa-paint-brush" aria-hidden="true"></i>
+                        <div data-key={this.props.pickerId} style={{ backgroundColor: this.state.selectedColor }} className="pickedColorDisplay" id={"pickedColorDisplay" + this.props.pickerId}></div>
+                    </div>
                 }
                 {
-                <div style={{display: 'none'}} id={"colorPickerDiv"+this.props.pickerId} className="dropdown-content">
-                    <span>Theme Colors</span>
-                    <div>
-                        {this.props.colors.columns.map( (colorColumn,index) => { return this.renderColumn(1, colorColumn,index) })}
-                    </div>
-                    <div style={{marginTop:10}}>
-                    <div>
-                        <div></div>
-                        <span>Standard Colors</span>
-                    </div>
-                    <div style={{display:'inline-block'}}>
-                        {this.props.colors.standardColors.map( (colorColumn,index) => { return this.renderColumn(2, colorColumn,index) })}
-                    </div>
-                </div>
-                </div>}
-                
-                     
+                    <div style={{ display: 'none' }} id={"colorPickerDiv" + this.props.pickerId} className="dropdown-content">
+                        <span>Theme Colors</span>
+                        <div>
+                            {this.props.colors.columns.map((colorColumn, index) => { return this.renderColumn(1, colorColumn, index) })}
+                        </div>
+                        <div style={{ marginTop: 10 }}>
+                            <div>
+                                <div></div>
+                                <span>Standard Colors</span>
+                            </div>
+                            <div style={{ display: 'inline-block' }}>
+                                {this.props.colors.standardColors.map((colorColumn, index) => { return this.renderColumn(2, colorColumn, index) })}
+                            </div>
+                        </div>
+                    </div>}
+
+
             </div>
 
         );
