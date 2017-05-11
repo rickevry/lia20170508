@@ -91,8 +91,8 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
                             <input style={{ marginBottom: 10 }} type="radio" name="fill" value="noFill" onChange={this.handleInputChange} checked={this.state.fill === 'noFill'} />No fill<br />
                             <input type="radio" name="fill" value="solidFill" onChange={this.handleInputChange} checked={this.state.fill === 'solidFill'} />Solid fill<br />
                         </form>
-                        <span style={{ paddingLeft: 10 }}>Color</span>
-                        <div style={{ right: 0, position: 'absolute', zIndex: 9999, display: 'inline-block' }} id="colorPickerComponent0">
+                        <span style={{ paddingLeft: 15 }}>Color</span>
+                        <div style={{ right: 12, position: 'absolute', zIndex: 9999, display: 'inline-block' }} id="colorPickerComponent0">
                         </div>
                         <br />
                         <br />
@@ -107,8 +107,8 @@ export default class ShapeOptions extends React.Component<ShapeOptionsProps, any
                             <input style={{ marginBottom: 10 }} type="radio" name="line" value="noLine" onChange={this.handleInputChange} checked={this.state.line === 'noLine'} />No line<br />
                             <input type="radio" name="line" value="solidLine" onChange={this.handleInputChange} checked={this.state.line === 'solidLine'} />Solid line<br />
                         </form>
-                        <span style={{ paddingLeft: 10 }}>Color</span>
-                        <div style={{ right: 0, position: 'absolute', zIndex: 9998, display: 'inline-block' }} id={"colorPickerComponent1"}>
+                        <span style={{ paddingLeft: 15 }}>Color</span>
+                        <div style={{ right: 12, position: 'absolute', zIndex: 9998, display: 'inline-block' }} id={"colorPickerComponent1"}>
                         </div>
                         <br />
                         <br />

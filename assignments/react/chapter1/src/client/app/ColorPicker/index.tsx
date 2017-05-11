@@ -208,11 +208,9 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
                                 {this.props.colors.standardColors.map((colorColumn, index) => { return this.renderColumn(2, colorColumn, index) })}
                             </div>
                         </div>
-                    </div>}
-
-
+                    </div>
+                }
             </div>
-
         );
     }
 }
