@@ -4,15 +4,12 @@ import { createStore, bindActionCreators, combineReducers } from 'redux';
 import { Provider, connect } from 'react-redux';
 
 import ColorPicker from './ColorPicker';
-import ShapeOptions from './ShapeOptions';
+import Toolbar from './Toolbar';
 
 
 var pack = {
-    renderColorPicker(colors, selectedColor, pickerId, domNode) {
-        render(<ColorPicker colors={colors} selectedColor={selectedColor} pickerId={pickerId}/>, domNode);
-    },
-    renderShapeOptions(fill, line, domNode) {
-        render(<ShapeOptions fill={fill} line={line}/>, domNode);
+    renderToolbar(domNode) {
+        render(<Toolbar/>, domNode);
     }
 };
 
