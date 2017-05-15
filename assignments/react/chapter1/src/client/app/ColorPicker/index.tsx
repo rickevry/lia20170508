@@ -163,8 +163,7 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
 
         var result = {
             color: color
-        }
-        
+        }   
 
         this.closeAfterPickedColor();
         this.props.callback && this.props.callback(result);
@@ -204,7 +203,8 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <label style={{ paddingLeft: 40 }}>Color</label>
                             <div data-idKey={this.props.pickerId} id={"colorPickerExpand" + this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
-                                <i data-idKey={this.props.pickerId} className="fa fa-paint-brush" style={{fontSize: 14}} aria-hidden="true"></i>
+                                <img data-idKey={this.props.pickerId} className="bucket" style={{width: 16}} src="lebucket.png" alt="Click to expand colorpicker" />
+                                {/*<i data-idKey={this.props.pickerId} className="fa fa-paint-brush" style={{fontSize: 14}} aria-hidden="true"></i>*/}
                                 <div data-idKey={this.props.pickerId} style={{ backgroundColor: this.state.selectedColor }} className="pickedColorDisplay" id={"pickedColorDisplay" + this.props.pickerId}></div>
                             </div>
                             <input id={"selectedColor" + this.props.pickerId} type="hidden" value={this.state.selectedColor} />

@@ -15,5 +15,3 @@ var pack = {
 
 module.exports = pack;
 
-
-// colors, "#9E9B9B", document.getElementById('colorPickerDiv'
