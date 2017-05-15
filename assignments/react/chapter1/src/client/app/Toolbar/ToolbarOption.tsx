@@ -177,13 +177,13 @@ export default class ToolbarOption extends React.Component<any, any>{
                     <div id={"toolbarOption" + this.props.id} style={{ display: 'none' }}>
                         <form style={{ paddingLeft: 10 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor="verticalInput">Vertical </label>
-                                <input id="verticalInput" style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posV" min="0" step="0.1" onChange={this.handleInputChange} />
+                                <label htmlFor={"verticalInput"+ this.props.id}>Vertical </label>
+                                <input id={"verticalInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posV" min="0" step="0.1" onChange={this.handleInputChange} />
                             </div>
                             <br />
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor="horizontalInput">Horizontal position</label>
-                                <input id="horizontalInput" style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posH" min="0" step="0.1" onChange={this.handleInputChange} />
+                                <label htmlFor={"horizontalInput"+ this.props.id}>Horizontal position</label>
+                                <input id={"horizontalInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posH" min="0" step="0.1" onChange={this.handleInputChange} />
                             </div>
                         </form>
                         <input id={"posH" + this.props.id} type="hidden" value={this.state.posH}/>
@@ -196,18 +196,18 @@ export default class ToolbarOption extends React.Component<any, any>{
                     <div id={"toolbarOption" + this.props.id} style={{ display: 'none' }}>
                         <form style={{ paddingLeft: 10 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor="heightInput">Height (cm)</label>
-                                <input id="heightInput" style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange} />
+                                <label htmlFor={"heightInput"+ this.props.id}>Height (cm)</label>
+                                <input id={"heightInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange} />
                             </div>
                             <br />
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor="widthInput">Width (cm)</label>
-                                <input id="widthInput" style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange} />
+                                <label htmlFor={"widthInput"+ this.props.id}>Width (cm)</label>
+                                <input id={"widthInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange} />
                             </div>
                             <br />
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor="rotationInput">Rotation ( °)</label>
-                                <input id="rotationInput" style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="°" type="number" name="rotation" min="0" max="360" step="1" onChange={this.handleInputChange} />
+                                <label htmlFor={"rotationInput"+ this.props.id}>Rotation ( °)</label>
+                                <input id={"rotationInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="°" type="number" name="rotation" min="0" max="360" step="1" onChange={this.handleInputChange} />
                             </div>
                         </form>
                         <input id={"sizeHeight" + this.props.id} type="hidden" value={this.state.sizeHeight}/>
