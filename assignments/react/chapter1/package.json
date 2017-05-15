@@ -52,6 +52,7 @@
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.12.1",
     "react-lite": "^0.15.33",
+    "react-numeric-input": "^2.0.7",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "s3fs": "^2.5.0"

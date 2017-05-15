@@ -11,7 +11,7 @@
   <style>
 body {
   font-family: 'Tahoma', Verdana, Geneva, Tahoma, sans-serif;
-  font-size: small;
+  font-size: x-small;
   margin: 0;
   padding: 0;
 }
@@ -29,6 +29,7 @@ body {
     padding: 12px 16px;
     z-index: 9999;
     clear: right;
+    float: right;
 }
 
 .dropdown:hover .dropdown-content {
@@ -84,10 +85,10 @@ body {
   user-select: none;
   color: #ff3300;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 .tree-view_arrow > span {
   color: #000;
-  font-size: 7;
 }
 
 .tree-view_arrow:before {
@@ -100,17 +101,23 @@ body {
   content: '▾';
 }
 
+input, label {
+  vertical-align: middle;
+}
+
+
+
 </style>
 </head>
 
 <body>
-  <div style="padding: 10px; min-width: 250px" id="toolbarComponent">
+  <!--<div style="padding: 10px; min-width: 200px" id="toolbarComponent">
     <div id="toolbarOptionsSelection">
       <ul style="-webkit-padding-start: 0px;">
-<li style="display: inline; font-weight: bold; margin-right: 10px">Shape Options</li>
-<li style="display: inline">Text Options</li>
-</ul>
-</div>
+        <li style="display: inline; font-weight: bold; margin-right: 10px; cursor: pointer">Shape Options</li>
+        <li style="display: inline; cursor: pointer">Text Options</li>
+      </ul>
+  </div>-->
 
 <div id="shapeOptionsComponent">
   <!--Rendered-->
@@ -121,78 +128,66 @@ body {
 <br/>
 
 <script>
-    var colors = {
-      standardColors: [
-        { mainColor: "#FFFFFF" },
-        { mainColor: "#000000" },
-        { mainColor: "#E1E0E0" },
-        { mainColor: "#354257" },
-        { mainColor: "#4A88CB" },
-        { mainColor: "#E76826" },
-        { mainColor: "#949494" },
-        { mainColor: "#FDB409" },
-        { mainColor: "#355CB7" },
-        { mainColor: "#5FA137" }
-      ],
-      columns: [
-        {
-          mainColor: "#FFFFFF",
-          colors: ["#EFEFEF", "#CFCFCF", "#B1B1B1", "#949494", "#6C6C6C"]
-        },
-        {
-          mainColor: "#000000",
-          colors: ["#6C6C6C", "#474747", "#303030", "#1C1C1C", "#0B0B0B"]
-        },
-        {
-          mainColor: "#E1E0E0",
-          colors: ["#C5C3C3", "#9E9B9B", "#625D5D", "#2C2A2A", "#121111"]
-        },
-        {
-          mainColor: "#354257",
-          colors: ["#CCD3DE", "#9DAABE", "#7284A0", "#26303E", "#1A1F28"]
-        },
-        {
-          mainColor: "#4A88CB",
-          colors: ["#D7E6F3", "#B0CDEA", "#8CB6DE", "#2560A6", "#183C65"]
-        },
-        {
-          mainColor: "#E76826",
-          colors: ["#F9DFCC", "#F3C09C", "#F0A271", "#B74510", "#6F2C0C"]
-        },
-        {
-          mainColor: "#949494",
-          colors: ["#E8E9E8", "#D3D3D3", "#BDBDBD", "#686868", "#414141"]
-        },
-        {
-          mainColor: "#FDB409",
-          colors: ["#FFEFC1", "#FDE187", "#FED253", "#B17F05", "#6B4E02"]
-        },
-        {
-          mainColor: "#355CB7",
-          colors: ["#D0DAEF", "#A6B9E1", "#7C98D2", "#243F84", "#182851"]
-        },
-        {
-          mainColor: "#5FA137",
-          colors: ["#DCECD0", "#BADBA4", "#99C87B", "#436F28", "#2A461B"]
-        }
-      ]
-    };
-
-    ReactRenderer.renderShapeOptions("noFill", "solidLine", document.getElementById('shapeOptionsComponent'));
-
-
-
-    ReactRenderer.renderColorPicker(colors, "#9E9B9B", "0", document.getElementById('colorPickerComponent0'),
-      function (result) {
-        alert(result.color);
+  var colors = {
+    standardColors: [
+      { mainColor: "#FFFFFF" },
+      { mainColor: "#000000" },
+      { mainColor: "#E1E0E0" },
+      { mainColor: "#354257" },
+      { mainColor: "#4A88CB" },
+      { mainColor: "#E76826" },
+      { mainColor: "#949494" },
+      { mainColor: "#FDB409" },
+      { mainColor: "#355CB7" },
+      { mainColor: "#5FA137" }
+    ],
+    columns: [
+      {
+        mainColor: "#FFFFFF",
+        colors: ["#EFEFEF", "#CFCFCF", "#B1B1B1", "#949494", "#6C6C6C"]
+      },
+      {
+        mainColor: "#000000",
+        colors: ["#6C6C6C", "#474747", "#303030", "#1C1C1C", "#0B0B0B"]
+      },
+      {
+        mainColor: "#E1E0E0",
+        colors: ["#C5C3C3", "#9E9B9B", "#625D5D", "#2C2A2A", "#121111"]
+      },
+      {
+        mainColor: "#354257",
+        colors: ["#CCD3DE", "#9DAABE", "#7284A0", "#26303E", "#1A1F28"]
+      },
+      {
+        mainColor: "#4A88CB",
+        colors: ["#D7E6F3", "#B0CDEA", "#8CB6DE", "#2560A6", "#183C65"]
+      },
+      {
+        mainColor: "#E76826",
+        colors: ["#F9DFCC", "#F3C09C", "#F0A271", "#B74510", "#6F2C0C"]
+      },
+      {
+        mainColor: "#949494",
+        colors: ["#E8E9E8", "#D3D3D3", "#BDBDBD", "#686868", "#414141"]
+      },
+      {
+        mainColor: "#FDB409",
+        colors: ["#FFEFC1", "#FDE187", "#FED253", "#B17F05", "#6B4E02"]
+      },
+      {
+        mainColor: "#355CB7",
+        colors: ["#D0DAEF", "#A6B9E1", "#7C98D2", "#243F84", "#182851"]
+      },
+      {
+        mainColor: "#5FA137",
+        colors: ["#DCECD0", "#BADBA4", "#99C87B", "#436F28", "#2A461B"]
       }
-    );
-    ReactRenderer.renderColorPicker(colors, "#9E9B9B", "1", document.getElementById('colorPickerComponent1'),
-      function (result) {
-        alert(result.color);
-      }
-    );
-  </script>
+    ]
+  };
+
+  ReactRenderer.renderToolbar(document.getElementById('shapeOptionsComponent'));
+
+</script>
 </body>
 
 </html>

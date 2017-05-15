@@ -38,6 +38,7 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
     width: number = 15;
     borderWidth: number = 1;
 
+
     getColumnOuterStyle() {
         return {
             borderWidth: 0,
@@ -109,11 +110,11 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
     getShadowStyle() {
         return {
             display: 'none',
-            top: 0, 
+            top: 0,
             left: 0,
             backgroundColor: 'rgba(0,0,0,0.3)',
             width: '100%',
-            height: '100%'
+            height: '100%',
         };
     }
 
@@ -163,20 +164,30 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         var result = {
             color: color
         }
+        
+
+        this.closeAfterPickedColor();
         this.props.callback && this.props.callback(result);
+    }
+    closeAfterPickedColor(){
+        let element = document.getElementById("colorPickerDiv" + this.props.pickerId);
+        let shadow = document.getElementById("shadow" + this.props.pickerId);
+
+        shadow.style.display = shadow.style.display === 'none' ? '' : 'none';
+        element.style.display = element.style.display === 'none' ? '' : 'none';       
     }
 
     toggleColorPicker(event) {
-        var key = event.target.getAttribute("data-key");
+        var key = event.target.getAttribute("data-idKey");
         let element = document.getElementById("colorPickerDiv" + key);
         let shadow = document.getElementById("shadow" + key);
 
-        if(shadow.style.position !== 'fixed'){
+        if (shadow.style.position !== 'fixed') {
             shadow.style.position = 'fixed';
         }
 
 
-        //If shadow doesn't exists display it
+        //If shadow doesn't show, display it
         shadow.style.display = shadow.style.display === 'none' ? '' : 'none';
         element.style.display = element.style.display === 'none' ? '' : 'none';
     }
@@ -185,32 +196,40 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
     render() {
         var self = this;
         return (
-            <div>
-                <div data-key={this.props.pickerId} style={ this.getShadowStyle()} id={"shadow" + this.props.pickerId} onClick={this.toggleColorPicker}></div>
-                {
-                    <div data-key={this.props.pickerId} id={"colorPickerExpand" + this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
-                        <i data-key={this.props.pickerId} className="fa fa-paint-brush" aria-hidden="true"></i>
-                        <div data-key={this.props.pickerId} style={{ backgroundColor: this.state.selectedColor }} className="pickedColorDisplay" id={"pickedColorDisplay" + this.props.pickerId}></div>
-                    </div>
-                }
-                {
-                    <div style={{ display: 'none' }} id={"colorPickerDiv" + this.props.pickerId} className="dropdown-content">
-                        <span>Theme Colors</span>
-                        <div>
-                            {this.props.colors.columns.map((colorColumn, index) => { return this.renderColumn(1, colorColumn, index) })}
-                        </div>
-                        <div style={{ marginTop: 10 }}>
+
+            <div style={{ right: 12, position: 'absolute', display: 'inline-block', width: '100%' }} id={"colorPickerComponent" + this.props.pickerId}>
+                <div>
+                    <div data-idKey={this.props.pickerId} style={this.getShadowStyle()} id={"shadow" + this.props.pickerId} onClick={this.toggleColorPicker}></div>
+                    {
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <label style={{ paddingLeft: 40 }}>Color</label>
+                            <div data-idKey={this.props.pickerId} id={"colorPickerExpand" + this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
+                                <i data-idKey={this.props.pickerId} className="fa fa-paint-brush" style={{fontSize: 14}} aria-hidden="true"></i>
+                                <div data-idKey={this.props.pickerId} style={{ backgroundColor: this.state.selectedColor }} className="pickedColorDisplay" id={"pickedColorDisplay" + this.props.pickerId}></div>
+                            </div>
+                            <input id={"selectedColor" + this.props.pickerId} type="hidden" value={this.state.selectedColor} />
+                        </div>             
+                    }
+                    {
+                        <div style={{ display: 'none' }} id={"colorPickerDiv" + this.props.pickerId} className="dropdown-content">
+                            <span>Theme Colors</span>
                             <div>
-                                <div></div>
-                                <span>Standard Colors</span>
+                                {this.props.colors.columns.map((colorColumn, index) => { return this.renderColumn(1, colorColumn, index) })}
                             </div>
-                            <div style={{ display: 'inline-block' }}>
-                                {this.props.colors.standardColors.map((colorColumn, index) => { return this.renderColumn(2, colorColumn, index) })}
+                            <div style={{ marginTop: 10 }}>
+                                <div>
+                                    <div></div>
+                                    <span>Standard Colors</span>
+                                </div>
+                                <div style={{ display: 'inline-block' }}>
+                                    {this.props.colors.standardColors.map((colorColumn, index) => { return this.renderColumn(2, colorColumn, index) })}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
+
         );
     }
 }
