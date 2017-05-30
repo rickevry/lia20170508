@@ -4,26 +4,92 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>React.js using NPM, Babel6 and Webpack</title>
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-with-addons.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-dom.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-with-addons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.0-rc.2/react-dom.js"></script>
   <script src="../../public/pmcoreui.js" type="text/javascript"></script>
   <script src="https://use.fontawesome.com/b61583d9c2.js"></script>
+  <style>
 
+html, body, #root, .app, .App, #app, #app>div {
+    height:100%;    
+    margin:0;
+    padding:0;
+}
+
+#header, #footer{
+    height:40px;
+    width: 100%;
+    background:lightgray;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.content{
+
+    border-spacing:10px;
+    border-collapse:separate;
+    background:#ffffff;
+    padding:0px 0;
+    margin:0px 0;
+}
+
+.container{
+  display:table;
+  height:100%;   
+ }
+
+.left{
+  background:lightgray;
+  display:table-cell;
+  width:13.33vw;
+}
+
+.center{
+  background:white;
+  display:table-cell;
+  width:73.33vw;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.right{
+  background:lightgray;
+  display:table-cell;
+  width:13.33vw;
+}
+
+
+</style>
 </head>
 
 <body>
-<div id="shapeOptionsComponent">
-  <!--Rendered-->
-</div>
-</div>
-<br/>
-<br/>
-<br/>
 
-<script>
+
+
+
+<div className="app">
+    <div id="header">Header</div>
+    <div class="container">
+        <div class="left" >
+          <div id="shapeSelectComponent"></div>
+          
+        </div>
+        <div class="center">Canvas</div>
+        <div class="right">
+          <div id="toolbarOptionsComponent"></div>
+        </div>
+    </div>
+    <!--<div id="footer">5</div>-->
+</div>
+
   
 
-  ReactRenderer.renderToolbar(document.getElementById('shapeOptionsComponent'));
+
+<script>
+
+  ReactRenderer.renderAccordion(document.getElementById('shapeSelectComponent'));
+  
+  ReactRenderer.renderToolbar(document.getElementById('toolbarOptionsComponent'));
 
 </script>
 </body>
