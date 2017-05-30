@@ -231,7 +231,7 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
     render() {
         var self = this;
         return (
-            <div style={{ right: 12, position: 'absolute', display: 'inline-block', minWidth: '200px' }} id={"colorPickerComponent" + this.props.pickerId}>
+            <div style={{ right: 12, position: 'absolute', display: 'inline-block', minWidth: '25%' }} id={"colorPickerComponent" + this.props.pickerId}>
                 <div>
                     <div data-idKey={this.props.pickerId} style={this.getShadowStyle()} id={"shadow" + this.props.pickerId} onClick={this.toggleColorPicker}></div>
                     {

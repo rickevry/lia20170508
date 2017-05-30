@@ -18,7 +18,7 @@ export default class ToolbarOptions extends React.Component<ToolbarOption, any>{
             fontSize: 'x-small',
             padding: 10,
             paddingTop: 0,
-            // minWidth: 200
+            minWidth: 150
         };
     }
 
