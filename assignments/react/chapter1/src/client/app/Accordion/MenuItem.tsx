@@ -75,7 +75,7 @@ toggleExpandTree(event) {
 
             function Shapes(props) {
             return (
-                <div id={"toolbarOption" + props.id} style={{ display: 'none' }}>
+                <div id={"toolbarOption1" + props.id} style={{ display: 'none' }}>
                 {props.data.map((data, index) =>
                     <div id={"cat" + props.id + "shape" + index}>
                        <img src={"assets/icons/" + data} width="32" height="32" />
@@ -89,7 +89,7 @@ toggleExpandTree(event) {
             <div>
                 <div className="tree-view_arrow" style={this.getTreeViewArrow()} onClick={this.toggleExpandTree}><span style={this.getTreeViewArrowSpan()} id={"arrow" + this.props.id}>&#9656;</span> {this.props.name}</div>
 
-                <Shapes data={this.props.data.shapes} id={this.props.id} index={this.props.index}/>
+                <Shapes data={this.props.data.shapes} id={1 + this.props.id} index={this.props.index}/>
             </div>
         );
 }
