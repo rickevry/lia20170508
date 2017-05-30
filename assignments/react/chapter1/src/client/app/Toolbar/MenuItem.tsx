@@ -6,15 +6,15 @@ class MenuItemProps {
 }
 
 export default class MenuItem extends React.Component<any, any>{
-     constructor(props: MenuItemProps) {
+    constructor(props: MenuItemProps) {
         super(props);
         this.state = {
             id: this.props.id,
             name: this.props.name,
         }
-     }
-    
-toggleExpandTree(event) {
+    }
+
+    toggleExpandTree(event) {
 
         let target = event.target.nextSibling;
         let element = document.getElementById(target.id);
@@ -46,13 +46,29 @@ toggleExpandTree(event) {
             element.style.display = 'none';
             document.getElementById(targetChildId).innerHTML = '&#9656;'; //Arrow right big=9658 9656
         }
-    }    
+    }
 
-        render() {
+    getTreeViewArrow(): React.CSSProperties {
+        return {
+            cursor: 'pointer',
+            marginRight: 6,
+            display: 'block',
+            userSelect: 'none',
+            color: '#ff3300',
+            marginBottom: 10,
+            fontWeight: 'bold'
+        };
+    }
+    getTreeViewArrowSpan() {
+        return {
+            color: '#000'
+        };
+    }
+
+    render() {
         return (
-            <div className="tree-view_arrow" style={{ display: 'block' }} onClick={this.toggleExpandTree}><span id={"arrow" + this.props.id}>&#9656;</span> {this.props.name}</div>
+            <div className="tree-view_arrow" style={this.getTreeViewArrow()} onClick={this.toggleExpandTree}><span style={this.getTreeViewArrowSpan()} id={"arrow" + this.props.id}>&#9656;</span> {this.props.name}</div>
         );
-}
+    }
 }
 
- 

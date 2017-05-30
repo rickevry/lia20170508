@@ -26,7 +26,6 @@ enum optionTypes {
     Size
 }
 
-
 export default class ToolbarOption extends React.Component<any, any>{
     constructor(props: ToolbarOptionProps) {
         super(props);
@@ -38,7 +37,7 @@ export default class ToolbarOption extends React.Component<any, any>{
                     fill: this.props.fill,
                     fillColor: this.props.fillColor
                 }
-            
+
             case optionTypes.Line:
                 this.state = {
                     type: this.props.type,
@@ -46,8 +45,8 @@ export default class ToolbarOption extends React.Component<any, any>{
                     line: this.props.line,
                     lineColor: this.props.lineColor
                 }
-            
-            
+
+
             case optionTypes.Position:
                 this.state = {
                     type: this.props.type,
@@ -55,7 +54,7 @@ export default class ToolbarOption extends React.Component<any, any>{
                     posH: this.props.posH,
                     posV: this.props.posV
                 }
-                
+
             case optionTypes.Size:
                 this.state = {
                     type: this.props.type,
@@ -64,7 +63,7 @@ export default class ToolbarOption extends React.Component<any, any>{
                     sizeHeight: this.props.sizeHeight,
                     rotation: this.props.rotation
                 }
-                
+
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -81,6 +80,27 @@ export default class ToolbarOption extends React.Component<any, any>{
             [name]: value
         });
     }
+
+    getVerticalAlignStyle(): React.CSSProperties {
+        return { verticalAlign: 'middle' };
+    }
+
+    getInputFieldStyle() {
+        return {
+            verticalAlign: 'middle',
+            clear: 'both',
+            float: 'right',
+            maxWidth: 80
+        };
+    }
+
+    getRadioStyle(): React.CSSProperties {
+        return {
+            margin: '0px 5px',
+            verticalAlign: 'middle'
+        };
+    }
+
 
     render() {
         let colors: any = {
@@ -144,14 +164,14 @@ export default class ToolbarOption extends React.Component<any, any>{
                 return (
                     <div id={"toolbarOption" + this.props.id} style={{ display: 'none' }}>
                         <form style={{ paddingLeft: 10 }}>
-                            <input id={"noFill" + this.props.id} type="radio" name="fill" value="noFill" onChange={this.handleInputChange} checked={this.state.fill === 'noFill'} /><label htmlFor={"noFill" + this.props.id}>No fill</label><br /><br />
-                            <input id={"solidFill" + this.props.id} type="radio" name="fill" value="solidFill" onChange={this.handleInputChange} checked={this.state.fill === 'solidFill'} /><label htmlFor={"solidFill" + this.props.id}>Solid fill</label><br />
+                            <input id={"noFill" + this.props.id} style={this.getRadioStyle()} type="radio" name="fill" value="noFill" onChange={this.handleInputChange} checked={this.state.fill === 'noFill'} /><label style={this.getVerticalAlignStyle()} htmlFor={"noFill" + this.props.id}>No fill</label><br /><br />
+                            <input id={"solidFill" + this.props.id} style={this.getRadioStyle()} type="radio" name="fill" value="solidFill" onChange={this.handleInputChange} checked={this.state.fill === 'solidFill'} /><label style={this.getVerticalAlignStyle()} htmlFor={"solidFill" + this.props.id}>Solid fill</label><br />
                         </form>
                         <br />
                         <ColorPicker colors={colors} selectedColor={'#ffffff'} pickerId={this.state.id} callback={''} />
                         <br />
-                        <input id={"fill" + this.props.id} type="hidden" value={this.state.fill}/>
-                        <input id={"fillColor" + this.props.id} type="hidden" value={this.state.fillColor}/>
+                        <input id={"fill" + this.props.id} type="hidden" value={this.state.fill} />
+                        <input id={"fillColor" + this.props.id} type="hidden" value={this.state.fillColor} />
                         <br />
                         <br />
                     </div>
@@ -160,14 +180,14 @@ export default class ToolbarOption extends React.Component<any, any>{
                 return (
                     <div id={"toolbarOption" + this.props.id} style={{ display: 'none' }}>
                         <form style={{ paddingLeft: 10 }}>
-                            <input id={"noLine" + this.props.id} type="radio" name="line" value="noLine" onChange={this.handleInputChange} checked={this.state.line === 'noLine'} /><label htmlFor={"noLine" + this.props.id} >No line</label><br /><br />
-                            <input id={"solidLine" + this.props.id} type="radio" name="line" value="solidLine" onChange={this.handleInputChange} checked={this.state.line === 'solidLine'} /><label htmlFor={"solidLine" + this.props.id}>Solid line</label><br />
+                            <input id={"noLine" + this.props.id} style={this.getRadioStyle()} type="radio" name="line" value="noLine" onChange={this.handleInputChange} checked={this.state.line === 'noLine'} /><label style={this.getVerticalAlignStyle()} htmlFor={"noLine" + this.props.id} >No line</label><br /><br />
+                            <input id={"solidLine" + this.props.id} style={this.getRadioStyle()} type="radio" name="line" value="solidLine" onChange={this.handleInputChange} checked={this.state.line === 'solidLine'} /><label style={this.getVerticalAlignStyle()} htmlFor={"solidLine" + this.props.id}>Solid line</label><br />
                         </form>
                         <br />
                         <ColorPicker colors={colors} selectedColor={'#ff0000'} pickerId={this.state.id} callback={''} />
                         <br />
-                        <input id={"line" + this.props.id} type="hidden" value={this.state.line}/>
-                        <input id={"lineColor" + this.props.id} type="hidden" value={this.state.lineColor}/>
+                        <input id={"line" + this.props.id} type="hidden" value={this.state.line} />
+                        <input id={"lineColor" + this.props.id} type="hidden" value={this.state.lineColor} />
                         <br />
                         <br />
                     </div>
@@ -177,17 +197,17 @@ export default class ToolbarOption extends React.Component<any, any>{
                     <div id={"toolbarOption" + this.props.id} style={{ display: 'none' }}>
                         <form style={{ paddingLeft: 10 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor={"verticalInput"+ this.props.id}>Vertical </label>
-                                <input id={"verticalInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posV" min="0" step="0.1" onChange={this.handleInputChange} />
+                                <label style={this.getVerticalAlignStyle()} htmlFor={"verticalInput" + this.props.id}>Vertical </label>
+                                <input style={this.getInputFieldStyle()} id={"verticalInput" + this.props.id} type="number" name="posV" min="0" step="0.1" onChange={this.handleInputChange} />
                             </div>
                             <br />
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor={"horizontalInput"+ this.props.id}>Horizontal position</label>
-                                <input id={"horizontalInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} type="number" name="posH" min="0" step="0.1" onChange={this.handleInputChange} />
+                                <label style={this.getVerticalAlignStyle()} htmlFor={"horizontalInput" + this.props.id}>Horizontal position</label>
+                                <input style={this.getInputFieldStyle()} id={"horizontalInput" + this.props.id} type="number" name="posH" min="0" step="0.1" onChange={this.handleInputChange} />
                             </div>
                         </form>
-                        <input id={"posH" + this.props.id} type="hidden" value={this.state.posH}/>
-                        <input id={"posV" + this.props.id} type="hidden" value={this.state.posV}/>
+                        <input id={"posH" + this.props.id} type="hidden" value={this.state.posH} />
+                        <input id={"posV" + this.props.id} type="hidden" value={this.state.posV} />
                         <br />
                     </div>
                 );
@@ -196,23 +216,23 @@ export default class ToolbarOption extends React.Component<any, any>{
                     <div id={"toolbarOption" + this.props.id} style={{ display: 'none' }}>
                         <form style={{ paddingLeft: 10 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor={"heightInput"+ this.props.id}>Height (cm)</label>
-                                <input id={"heightInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange} />
+                                <label style={this.getVerticalAlignStyle()} htmlFor={"heightInput" + this.props.id}>Height (cm)</label>
+                                <input style={this.getInputFieldStyle()} id={"heightInput" + this.props.id} placeholder="cm" type="number" name="sizeHeight" min="0" step="0.01" onChange={this.handleInputChange} />
                             </div>
                             <br />
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor={"widthInput"+ this.props.id}>Width (cm)</label>
-                                <input id={"widthInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="cm" type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange} />
+                                <label style={this.getVerticalAlignStyle()} htmlFor={"widthInput" + this.props.id}>Width (cm)</label>
+                                <input style={this.getInputFieldStyle()} id={"widthInput" + this.props.id} placeholder="cm" type="number" name="sizeWidth" min="0" step="0.01" onChange={this.handleInputChange} />
                             </div>
                             <br />
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <label htmlFor={"rotationInput"+ this.props.id}>Rotation ( °)</label>
-                                <input id={"rotationInput" + this.props.id} style={{ clear: 'both', float: 'right', maxWidth: 80 }} placeholder="°" type="number" name="rotation" min="0" max="360" step="1" onChange={this.handleInputChange} />
+                                <label style={this.getVerticalAlignStyle()} htmlFor={"rotationInput" + this.props.id}>Rotation ( °)</label>
+                                <input style={this.getInputFieldStyle()} id={"rotationInput" + this.props.id} placeholder="°" type="number" name="rotation" min="0" max="360" step="1" onChange={this.handleInputChange} />
                             </div>
                         </form>
-                        <input id={"sizeHeight" + this.props.id} type="hidden" value={this.state.sizeHeight}/>
-                        <input id={"sizeWidth" + this.props.id} type="hidden" value={this.state.sizeWidth}/>
-                        <input id={"rotation" + this.props.id} type="hidden" value={this.state.rotation}/>
+                        <input id={"sizeHeight" + this.props.id} type="hidden" value={this.state.sizeHeight} />
+                        <input id={"sizeWidth" + this.props.id} type="hidden" value={this.state.sizeWidth} />
+                        <input id={"rotation" + this.props.id} type="hidden" value={this.state.rotation} />
                     </div>
                 );
         }

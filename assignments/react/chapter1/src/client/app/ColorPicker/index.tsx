@@ -103,7 +103,7 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
                 onMouseOver={(e) => this.handleColorMouseOver(e, group, rowIndex, columnIndex)}
                 onMouseOut={(e) => this.handleColorMouseOut(e)}
                 onClick={(e) => this.handleClick(row)}
-                >
+            >
             </div>
         );
     }
@@ -141,6 +141,20 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         return mergeCss(css, hoover && hooverCss);
     }
 
+    getColorPickerExpandStyle() : React.CSSProperties {
+        return {
+            position: 'relative',
+            display: 'inline-block',
+            textAlign: 'center',
+            width: 40,
+            height: 20,
+            padding: 5,
+            border: '1px solid #ccc',
+            backgroundColor: '#EEEEEE',
+            cursor: 'pointer'
+        };
+    }
+
     renderColumn(group: number, colorColumn: any, columnIndex: number): any {
         return (
             <div key={"renderColumn1_" + columnIndex} style={this.getColumnOuterStyle()}>
@@ -163,17 +177,17 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
 
         var result = {
             color: color
-        }   
+        }
 
         this.closeAfterPickedColor();
         this.props.callback && this.props.callback(result);
     }
-    closeAfterPickedColor(){
+    closeAfterPickedColor() {
         let element = document.getElementById("colorPickerDiv" + this.props.pickerId);
         let shadow = document.getElementById("shadow" + this.props.pickerId);
 
         shadow.style.display = shadow.style.display === 'none' ? '' : 'none';
-        element.style.display = element.style.display === 'none' ? '' : 'none';       
+        element.style.display = element.style.display === 'none' ? '' : 'none';
     }
 
     toggleColorPicker(event) {
@@ -190,28 +204,48 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
         shadow.style.display = shadow.style.display === 'none' ? '' : 'none';
         element.style.display = element.style.display === 'none' ? '' : 'none';
     }
-
+    getPickedColorDisplayStyle() {
+        return {
+            width: '80%',
+            height: 5,
+            margin: '0px auto',
+            border: '1px solid #ffffff',
+            backgroundColor: this.state.selectedColor
+        }
+    };
+    getDropdownContentStyle() : React.CSSProperties{
+        return {
+            display: 'none',
+            fontFamily: '"Tahoma", Verdana, Geneva, Tahoma, sans-serif',
+            position: 'relative',
+            backgroundColor: '#f9f9f9',
+            minWidth: 200,
+            boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+            padding: '12px 16px',
+            zIndex: 9999,
+            clear: 'right',
+            float: 'right'
+        };
+    }
 
     render() {
         var self = this;
         return (
-
             <div style={{ right: 12, position: 'absolute', display: 'inline-block', width: '100%' }} id={"colorPickerComponent" + this.props.pickerId}>
                 <div>
                     <div data-idKey={this.props.pickerId} style={this.getShadowStyle()} id={"shadow" + this.props.pickerId} onClick={this.toggleColorPicker}></div>
                     {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <label style={{ paddingLeft: 40 }}>Color</label>
-                            <div data-idKey={this.props.pickerId} id={"colorPickerExpand" + this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
-                                <img data-idKey={this.props.pickerId} className="bucket" style={{width: 16}} src="lebucket.png" alt="Click to expand colorpicker" />
-                                {/*<i data-idKey={this.props.pickerId} className="fa fa-paint-brush" style={{fontSize: 14}} aria-hidden="true"></i>*/}
-                                <div data-idKey={this.props.pickerId} style={{ backgroundColor: this.state.selectedColor }} className="pickedColorDisplay" id={"pickedColorDisplay" + this.props.pickerId}></div>
+                            <div style={this.getColorPickerExpandStyle()} data-idKey={this.props.pickerId} id={"colorPickerExpand" + this.props.pickerId} className="dropdown colorPickerExpand" onClick={this.toggleColorPicker}>
+                                <img data-idKey={this.props.pickerId} className="bucket" style={{ width: 16 }} src="lebucket.png" alt="Click to expand colorpicker" />
+                                <div data-idKey={this.props.pickerId} style={this.getPickedColorDisplayStyle()} className="pickedColorDisplay" id={"pickedColorDisplay" + this.props.pickerId}></div>
                             </div>
                             <input id={"selectedColor" + this.props.pickerId} type="hidden" value={this.state.selectedColor} />
-                        </div>             
+                        </div>
                     }
                     {
-                        <div style={{ display: 'none' }} id={"colorPickerDiv" + this.props.pickerId} className="dropdown-content">
+                        <div style={this.getDropdownContentStyle()} id={"colorPickerDiv" + this.props.pickerId} className="dropdown-content">
                             <span>Theme Colors</span>
                             <div>
                                 {this.props.colors.columns.map((colorColumn, index) => { return this.renderColumn(1, colorColumn, index) })}
