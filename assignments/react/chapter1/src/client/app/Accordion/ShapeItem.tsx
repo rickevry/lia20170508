@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-class MenuItemProps {
+class ShapeItemProps {
     public id: number;
     public name: string;
     public index: number;
     public data: string;
 }
 
-export default class MenuItem extends React.Component<any, any>{
-     constructor(props: MenuItemProps) {
+export default class ShapeItem extends React.Component<any, any>{
+     constructor(props: ShapeItemProps) {
         super(props);
         this.state = {
             id: this.props.id,
@@ -19,12 +19,9 @@ export default class MenuItem extends React.Component<any, any>{
 toggleExpandTree(event) {
 
         let target = event.target.nextSibling;
-        console.log("target", target);
         let element = document.getElementById(target.id);
-        console.log("element", element);
         let targetChildren = event.target.children;
-        console.log("targetChildren", targetChildren);
-
+ 
         //declaration
         let targetChildId: any;
 
@@ -41,7 +38,6 @@ toggleExpandTree(event) {
             targetChildId = targetChildren[0].id;
         }
 
-        console.log("element.style.display", element.style.display);
         //Changes the arrow and the display of the content
         if (element.style.display === 'none') {
             element.style.display = '';
@@ -56,12 +52,16 @@ toggleExpandTree(event) {
     getTreeViewArrow(): React.CSSProperties {
         return {
             cursor: 'pointer',
-            marginRight: 6,
             display: 'block',
             userSelect: 'none',
             color: '#ff3300',
-            marginBottom: 10,
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            background: '#BBBBBB',
+            margin: 0,
+            paddingLeft: '5px',
+            paddingRight: '5px',
+            paddingBottom: '10px',
+            paddingTop: '10px'
         };
     }
 
@@ -73,14 +73,38 @@ toggleExpandTree(event) {
 
         render() {
 
+            function getShapeItemUl(): React.CSSProperties {
+                return {
+                    listStyle: 'one',
+                    margin: 0,
+                    padding: 0,
+                    paddingLeft: '30px',
+                    marginBottom: '5px'
+                };
+            }
+
+            function getShapeItemLl(): React.CSSProperties {
+                return {
+                    marginTop: '5px',
+                    marginLeft: '5px',
+                    display: 'inline-block',
+                    borderStyle: 'solid',
+                    borderWidth: 1,
+                    borderColor: '#999999',
+                    padding: 5
+                };
+            }
+
             function Shapes(props) {
             return (
-                <div id={"toolbarOption1" + props.id} style={{ display: 'none' }}>
+                <div className="ShapeItems" id={"toolbarOption1" + props.id} style={{ display: 'none', background: 'lightgray' }}>
+                    <ul style={getShapeItemUl()}>
                 {props.data.map((data, index) =>
-                    <div id={"cat" + props.id + "shape" + index}>
+                    <li id={"cat" + props.id + "shape" + index} style={getShapeItemLl()}>
                        <img src={"assets/icons/" + data} width="32" height="32" />
-                    </div>
+                    </li>
                 )}
+                    </ul>
                 </div>
             );
             }

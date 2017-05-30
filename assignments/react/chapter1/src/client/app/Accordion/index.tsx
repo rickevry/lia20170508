@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MenuItem from './MenuItem';
+import ShapeItem from './ShapeItem';
 import ColorPicker from '../ColorPicker';
 import ToolbarOption from '../Toolbar/ToolbarOption';
 
@@ -17,7 +17,7 @@ export default class ToolbarOptions extends React.Component<any, any>{
             return (
                 <div>
                 {props.posts.map((category, index) =>
-                    <MenuItem data={category} index={index} id={category.id} name={category.title} />
+                    <ShapeItem data={category} index={index} id={category.id} name={category.title} />
                 )}
                 </div>
             );
@@ -33,7 +33,7 @@ export default class ToolbarOptions extends React.Component<any, any>{
                 {
                     title: "Misc",
                     id: 1,
-                    shapes: ["icon0201.png", "icon0202.png", "icon0203.png", "icon0204.png"]
+                    shapes: ["icon0201.png", "icon0202.png", "icon0203.png", "icon0204.png", "icon0205.png", "icon0206.png", "icon0207.png", "icon0208.png", "icon0209.png", "icon0210.png"]
                 },
                 {
                     title: "Database",
@@ -51,7 +51,7 @@ export default class ToolbarOptions extends React.Component<any, any>{
 
         return (
 
-            <div style={{ padding: 10, minWidth: 200 }} id="toolbarComponent">
+            <div style={{ padding: 0, minWidth: 200 }} id="toolbarComponent">
                 
                 <div id="shapeCategories">
                     
