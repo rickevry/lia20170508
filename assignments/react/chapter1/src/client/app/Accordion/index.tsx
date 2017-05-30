@@ -28,22 +28,22 @@ export default class ToolbarOptions extends React.Component<any, any>{
                 {
                     title: "General",
                     id: 0,
-                    shapes: ["icon0101.ico", "icon0102.ico", "icon0103.ico", "icon0104.ico", "icon0105.ico"]
+                    shapes: ["icon0101.png", "icon0102.png", "icon0103.png", "icon0104.png", "icon0105.png"]
                 },
                 {
                     title: "Misc",
                     id: 1,
-                    shapes: ["icon0201.ico", "icon0202.ico", "icon0203.ico", "icon0204.ico"]
+                    shapes: ["icon0201.png", "icon0202.png", "icon0203.png", "icon0204.png"]
                 },
                 {
                     title: "Database",
                     id: 2,
-                    shapes: ["icon0301.ico", "icon0302.ico", "icon0303.ico", "icon0304.ico", "icon0305.ico", "icon0306.ico", "icon0307.ico"]
+                    shapes: ["icon0301.png", "icon0302.png", "icon0303.png", "icon0304.png", "icon0305.png", "icon0306.png", "icon0307.png"]
                 },
                 {
                     title: "Flowchart",
                     id: 3,
-                    shapes: ["icon0401.ico", "icon0402.ico", "icon0403.ico", "icon0404.ico"]
+                    shapes: ["icon0401.png", "icon0402.png", "icon0403.png", "icon0404.png"]
                 },
             ];
 

@@ -19,9 +19,11 @@ export default class MenuItem extends React.Component<any, any>{
 toggleExpandTree(event) {
 
         let target = event.target.nextSibling;
+        console.log("target", target);
         let element = document.getElementById(target.id);
-
+        console.log("element", element);
         let targetChildren = event.target.children;
+        console.log("targetChildren", targetChildren);
 
         //declaration
         let targetChildId: any;
@@ -39,6 +41,7 @@ toggleExpandTree(event) {
             targetChildId = targetChildren[0].id;
         }
 
+        console.log("element.style.display", element.style.display);
         //Changes the arrow and the display of the content
         if (element.style.display === 'none') {
             element.style.display = '';
@@ -50,13 +53,33 @@ toggleExpandTree(event) {
         }
     }    
 
+    getTreeViewArrow(): React.CSSProperties {
+        return {
+            cursor: 'pointer',
+            marginRight: 6,
+            display: 'block',
+            userSelect: 'none',
+            color: '#ff3300',
+            marginBottom: 10,
+            fontWeight: 'bold'
+        };
+    }
+
+        getTreeViewArrowSpan() {
+        return {
+            color: '#000'
+        };
+    }
+
         render() {
 
             function Shapes(props) {
             return (
-                <div>
+                <div id={"toolbarOption" + props.id} style={{ display: 'none' }}>
                 {props.data.map((data, index) =>
-                    <div>{data.title}</div>
+                    <div id={"cat" + props.id + "shape" + index}>
+                       <img src={"assets/icons/" + data} width="32" height="32" />
+                    </div>
                 )}
                 </div>
             );
@@ -64,7 +87,8 @@ toggleExpandTree(event) {
 
         return (
             <div>
-                <div className="tree-view_arrow" style={{ display: 'block' }} onClick={this.toggleExpandTree}><span id={"arrow" + this.props.id}>&#9656;</span> {this.props.name}</div>
+                <div className="tree-view_arrow" style={this.getTreeViewArrow()} onClick={this.toggleExpandTree}><span style={this.getTreeViewArrowSpan()} id={"arrow" + this.props.id}>&#9656;</span> {this.props.name}</div>
+
                 <Shapes data={this.props.data.shapes} id={this.props.id} index={this.props.index}/>
             </div>
         );
