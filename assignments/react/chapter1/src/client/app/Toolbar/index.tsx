@@ -17,17 +17,12 @@ export default class ToolbarOptions extends React.Component<ToolbarOption, any>{
             fontFamily: "'Tahoma', Verdana, Geneva, Tahoma, sans-serif",
             fontSize: 'x-small',
             padding: 10,
-            minWidth: 200
+            paddingTop: 0,
+            // minWidth: 200
         };
     }
 
-    getVerticalAlignStyle(): React.CSSProperties {
-        return { verticalAlign: 'middle' };
-    }
-
-    getRadioStyle() : React.CSSProperties {
-        return { margin: '0px 5px' };
-    }
+ 
 toggleMenuOptions(event) {
     let target: any = event.target;
     let targetId: number = target.getAttribute('data-idKey');

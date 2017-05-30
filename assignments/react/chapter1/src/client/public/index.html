@@ -14,12 +14,14 @@ html, body, #root, .app, .App, #app, #app>div {
     height:100%;    
     margin:0;
     padding:0;
+    background:lightgray;
 }
 
 #header, #footer{
-    height:40px;
+    height:85px;
     width: 100%;
-    background:lightgray;
+    color: white;
+    background-color: #18284e;
     vertical-align: middle;
     text-align: center;
 }
@@ -29,33 +31,39 @@ html, body, #root, .app, .App, #app, #app>div {
     border-spacing:10px;
     border-collapse:separate;
     background:#ffffff;
-    padding:0px 0;
-    margin:0px 0;
+    padding: 0;
+    margin: 0;
 }
 
 .container{
-  display:table;
-  height:100%;   
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: auto;
+  min-height: 500px;/* Remove   */
  }
 
 .left{
-  background:lightgray;
-  display:table-cell;
-  width:13.33vw;
+  /*display:table-cell;
+  width:13.33vw;*/
+  width: 25%;
 }
 
 .center{
   background:white;
-  display:table-cell;
+  width: 50%;
+  /*display:table-cell;
   width:73.33vw;
   vertical-align: middle;
-  text-align: center;
+  text-align: center;*/
 }
 
 .right{
   background:lightgray;
-  display:table-cell;
-  width:13.33vw;
+  /*min-width: 200px;*/
+  width: 25%;
+  /*display:table-cell;
+  width:13.33vw;*/
 }
 
 
@@ -68,7 +76,7 @@ html, body, #root, .app, .App, #app, #app>div {
 
 
 <div className="app">
-    <div id="header">Header</div>
+    <div id="header"><h1>header</h1></div>
     <div class="container">
         <div class="left" >
           <div id="shapeSelectComponent"></div>

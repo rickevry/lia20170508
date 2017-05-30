@@ -213,13 +213,13 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
             backgroundColor: this.state.selectedColor
         }
     };
-    getDropdownContentStyle() : React.CSSProperties{
+    getDropdownContentStyle() : React.CSSProperties {
         return {
             display: 'none',
             fontFamily: '"Tahoma", Verdana, Geneva, Tahoma, sans-serif',
             position: 'relative',
             backgroundColor: '#f9f9f9',
-            minWidth: 200,
+            // minWidth: 200,
             boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
             padding: '12px 16px',
             zIndex: 9999,
@@ -231,7 +231,7 @@ export default class ColorPicker extends React.Component<ColorPickerProps, any> 
     render() {
         var self = this;
         return (
-            <div style={{ right: 12, position: 'absolute', display: 'inline-block', width: '100%' }} id={"colorPickerComponent" + this.props.pickerId}>
+            <div style={{ right: 12, position: 'absolute', display: 'inline-block', minWidth: '200px' }} id={"colorPickerComponent" + this.props.pickerId}>
                 <div>
                     <div data-idKey={this.props.pickerId} style={this.getShadowStyle()} id={"shadow" + this.props.pickerId} onClick={this.toggleColorPicker}></div>
                     {
