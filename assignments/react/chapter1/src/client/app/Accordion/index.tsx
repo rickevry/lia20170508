@@ -24,26 +24,31 @@ export default class ToolbarOptions extends React.Component<any, any>{
             }
 
 
-            const categorys = [
+            let categorys = [
+                {
+                    title: "Flowchart",
+                    id: 0,
+                    shapes: ["flowchart/database.png", "flowchart/decision.png", "flowchart/process.png", "flowchart/merge.png", "flowchart/alt_process.png", "flowchart/card.png", "flowchart/data.png", "flowchart/prep.png", "flowchart/document.png", "flowchart/stored_data.png"]
+                },
+                {
+                    title: "Electric",
+                    id: 1,
+                    shapes: ["electric/amplifier.png", "electric/acpowersup.png", "electric/cap_nonpolar.png", "electric/grd_earth.png", "electric/grd_sig.png", "electric/photoresistor.png", "electric/spst_no.png", "electric/spst_nc.png", "electric/spdt_toggle1.png", "electric/diode1.png", "electric/fuse.png", "electric/generator.png", "electric/inductor.png", "electric/pb_nc.png", "electric/pb_no.png", "electric/npn.png", "electric/resistor.png"]
+                },
                 {
                     title: "General",
-                    id: 0,
-                    shapes: ["icon0101.png", "icon0102.png", "icon0103.png", "icon0104.png", "icon0105.png"]
+                    id: 2,
+                    shapes: ["flowchart/merge.png", "flowchart/alt_process.png", "flowchart/card.png", "flowchart/data.png", "flowchart/prep.png", "flowchart/document.png", "flowchart/stored_data.png"]
                 },
                 {
                     title: "Misc",
-                    id: 1,
-                    shapes: ["icon0201.png", "icon0202.png", "icon0203.png", "icon0204.png", "icon0205.png", "icon0206.png", "icon0207.png", "icon0208.png", "icon0209.png", "icon0210.png"]
+                    id: 3,
+                    shapes: ["flowchart/data.png", "flowchart/prep.png", "flowchart/document.png", "flowchart/stored_data.png"]
                 },
                 {
                     title: "Database",
-                    id: 2,
-                    shapes: ["icon0301.png", "icon0302.png", "icon0303.png", "icon0304.png", "icon0305.png", "icon0306.png", "icon0307.png"]
-                },
-                {
-                    title: "Flowchart",
-                    id: 3,
-                    shapes: ["icon0401.png", "icon0402.png", "icon0403.png", "icon0404.png"]
+                    id: 4,
+                    shapes: ["flowchart/database.png", "flowchart/decision.png", "flowchart/process.png"]
                 },
             ];
 
@@ -56,12 +61,6 @@ export default class ToolbarOptions extends React.Component<any, any>{
                 <div id="shapeCategories">
                     
                     <ShapesCategories posts={categorys} />
-                    {/*<ToolbarOption type={1} id={1} />*/}
-
-                    {/*<ToolbarOption type={2} id={2} />*/}
-
-                    {/*<ToolbarOption type={3} id={3} />*/}
-
 
                 </div>
             </div>

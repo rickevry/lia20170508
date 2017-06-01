@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+
 class ShapeItemProps {
     public id: number;
     public name: string;
@@ -18,45 +19,70 @@ export default class ShapeItem extends React.Component<any, any>{
     
 toggleExpandTree(event) {
 
+        // Get Shapes div
         let target = event.target.nextSibling;
+        console.log("target", target);
+
+        // Get Shapes div
         let element = document.getElementById(target.id);
+        console.log("element", element)
+        
+        // Get target children?
         let targetChildren = event.target.children;
+        console.log("targetChildren", targetChildren);
+
+        // hides all childes 
+        let allChilds = document.getElementsByClassName("shapeItems");
+        console.log("allChilds", allChilds);
+
+        Array.prototype.forEach.call(allChilds, function(child) {
+            child.style.display = 'none';
+            console.log("child", child);
+        });
  
         //declaration
         let targetChildId: any;
+        console.log("targetChildId", targetChildId);
 
         // get the arrows parent
         let arrowParent = event.target.parentElement;
+        console.log("arrowParent", arrowParent);
         // get the content div just below the title
         let arrowParentSibling = arrowParent.nextSibling;
+        console.log("arrowParentSibling", arrowParentSibling);
 
         // if the the arrow is clicked
+        console.log("targetChildren.length", targetChildren.length);
         if (targetChildren.length == 0) {
             element = document.getElementById(arrowParentSibling.id);
+            console.log("element", element);
             targetChildId = arrowParent.children[0].id;
+            console.log("targetChildId", targetChildId);
         } else {
             targetChildId = targetChildren[0].id;
+            console.log("targetChildId", targetChildId);
         }
 
         //Changes the arrow and the display of the content
+        console.log("", );
         if (element.style.display === 'none') {
             element.style.display = '';
-            document.getElementById(targetChildId).innerHTML = '&#9662;'; //Arrow down big=9660 9662
+            console.log("", );
 
         } else {
             element.style.display = 'none';
-            document.getElementById(targetChildId).innerHTML = '&#9656;'; //Arrow right big=9658 9656
+            console.log("", );
         }
     }    
 
-    getTreeViewArrow(): React.CSSProperties {
+    getShapeCategory(): React.CSSProperties {
         return {
             cursor: 'pointer',
             display: 'block',
             userSelect: 'none',
-            color: '#ff3300',
+            color: '#000000',
             fontWeight: 'bold',
-            background: '#BBBBBB',
+            background: 'lightgray',
             margin: 0,
             paddingLeft: '5px',
             paddingRight: '5px',
@@ -65,43 +91,22 @@ toggleExpandTree(event) {
         };
     }
 
-        getTreeViewArrowSpan() {
-        return {
-            color: '#000'
-        };
-    }
-
         render() {
 
-            function getShapeItemUl(): React.CSSProperties {
+            function getShapeItemDiv(): React.CSSProperties {
                 return {
-                    listStyle: 'one',
-                    margin: 0,
-                    padding: 0,
-                    paddingLeft: '30px',
-                    marginBottom: '5px'
-                };
-            }
-
-            function getShapeItemLl(): React.CSSProperties {
-                return {
-                    marginTop: '5px',
-                    marginLeft: '5px',
-                    display: 'inline-block',
-                    borderStyle: 'solid',
-                    borderWidth: 1,
-                    borderColor: '#999999',
-                    padding: 5
+                    display: 'none',
+                    overflow: 'auto'
                 };
             }
 
             function Shapes(props) {
             return (
-                <div className="ShapeItems" id={"toolbarOption1" + props.id} style={{ display: 'none', background: 'lightgray' }}>
-                    <ul style={getShapeItemUl()}>
+                <div className="shapeItems" id={"toolbarOption1" + props.id} style={getShapeItemDiv()}>
+                    <ul>
                 {props.data.map((data, index) =>
-                    <li id={"cat" + props.id + "shape" + index} style={getShapeItemLl()}>
-                       <img src={"assets/icons/" + data} width="32" height="32" />
+                    <li id={"cat" + props.id + "shape" + index}>
+                       <img src={"assets/shapes/" + data} width="64" height="64" />
                     </li>
                 )}
                     </ul>
@@ -110,8 +115,8 @@ toggleExpandTree(event) {
             }
 
         return (
-            <div>
-                <div className="tree-view_arrow" style={this.getTreeViewArrow()} onClick={this.toggleExpandTree}><span style={this.getTreeViewArrowSpan()} id={"arrow" + this.props.id}>&#9656;</span> {this.props.name}</div>
+            <div className="mainStyle">
+                <div className="shapeCategory" style={this.getShapeCategory()} onClick={this.toggleExpandTree}><span> </span>{this.props.name}</div>
 
                 <Shapes data={this.props.data.shapes} id={1 + this.props.id} index={this.props.index}/>
             </div>
