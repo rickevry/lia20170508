@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+html,body{
+    height:100%;    
+    margin:0;
+    padding:0;
+    border:0;
+    font-family: sans-serif;
+}
+
+div{
+    margin:0;
+    border:0;
+}
+
+.content{
+    display:table;
+    width:100%;
+    border-collapse:separate;
+    height:87%;
+}
+
+.Col{
+    display:table-cell;
+    
+    height:100%;
+}
+
+#left {
+    width:200px;
+    max-width: 200px;
+    min-width: 150px;
+    overflow:auto;
+}
+
+#center {
+    min-width: 500px;
+    overflow: scroll;
+}
+
+#right {
+    width:200px;
+    max-width: 200px;
+}
+
+#header,#footer{
+    position:relative;
+    z-index:1;
+}
+
+#header{
+    height:8%;
+}
+
+#footer{
+    height:5%;
+}
+
+</style>
+</head>
+<body>
+<div id="header">Header</div>
+<div class="content">
+    <div id="left" class="Col">
+        <ul>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+            <li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li><li> line 1 </li>
+        </ul>
+    </div>
+    <div id="center" class="Col"><textarea style="background-color:green;">B Just a test</textarea></div>
+    <div id="right" class="Col"><textarea style="background-color:lime;">C Just a test</textarea></div>
+</div>
+<div id="footer"><textarea style="background-color:yellow;">F Just a test</textarea></div>
+</body>
+</html>
