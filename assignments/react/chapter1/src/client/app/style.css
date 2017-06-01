@@ -1,0 +1,129 @@
+
+html, body, #root, .app, .App, #app, #app>div {
+    height:100%;    
+    margin:0;
+    padding:0;
+    background:lightgray;
+}
+
+#header, #footer{
+    height:85px;
+    width: 100%;
+    color: white;
+    background-color: #18284e;
+    display: table;
+}
+
+#header span {
+    vertical-align:middle;
+    display: table-cell;
+    text-align: center;
+    font-family: "Tahoma", Verdana, Geneva, Tahoma, sans-serif;
+    font-size: x-large;
+}
+
+.content{
+    border-spacing:10px;
+    border-collapse:separate;
+    background:#ffffff;
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+  display:flex;
+  margin: 0px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  /*height: auto;*/
+  min-height: 500px;/* Remove   */
+ }
+
+.left{
+  /*display:table-cell;
+  width:13.33vw;*/
+  width: 20%;
+  min-width: 200px;
+  height: 500px;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.center{
+  background:white;
+  width: 65%;
+  /*display:table-cell;
+  width:73.33vw;
+  vertical-align: middle;
+  text-align: center;*/
+  min-height: 500px;
+  min-width: 500px;
+      display: table;
+}
+
+.center span {
+    vertical-align:middle;
+    display: table-cell;
+    text-align: center;
+    font-family: "Tahoma", Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+}
+
+.right{
+  background:lightgray;
+  /*min-width: 200px;*/
+  width: 15%;
+  /*display:table-cell;
+  width:13.33vw;*/
+  min-width: 150px;
+}
+
+.shapeItems {
+    background: #eeeeee;
+    margin: 0px;
+    padding: 5px;
+    overflow: auto;
+}
+
+.shapeItems ul {
+    list-style: one;
+    margin: 0;
+    padding: 0;
+    padding-left: 30px;
+    margin-bottom: 5px;
+}
+
+.shapeItems li {
+    margin-top: 5px;
+    margin-left: 5px;
+    display: inline-block;
+    border-style: solid;
+    border-width: 0;
+    border-color: #999999;
+    padding: 5;
+}
+
+.mainStyle {       
+    font-family: "Tahoma", Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+}
+
+.treeViewArrow {
+    cursor: pointer;
+    margin-right: 6;
+    display: block;
+    user-select: none;
+    color: #ff3300;
+    margin-bottom: 10;
+    font-weight: bold;
+}
+
+.treeViewArrow span {
+    color: #000;
+}
+
+.shapeCategory{
+    font-family: "Tahoma", Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+    font-weight: normal;
+}
