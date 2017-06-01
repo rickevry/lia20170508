@@ -62,7 +62,7 @@ toggleExpandTree(event) {
             <div className="mainStyle">
                 <div className="shapeCategory" onClick={this.toggleExpandTree}><div></div>{this.props.name}</div>
 
-                <Shapes data={this.props.data.shapes} id={1 + this.props.id} index={this.props.index}/>
+                <Shapes data={this.props.data.shapes} id={1 + this.props.id} index={this.props.index} />
             </div>
         );
 }

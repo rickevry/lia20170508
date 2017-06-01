@@ -79,7 +79,6 @@ html, body, #root, .app, .App, #app, #app>div {
 }
 
 .shapeItems {
-    background: #eeeeee;
     margin: 0px;
     padding: 5px;
     overflow: auto;
@@ -103,11 +102,6 @@ html, body, #root, .app, .App, #app, #app>div {
     padding: 5;
 }
 
-.mainStyle {       
-    font-family: "Tahoma", Verdana, Geneva, Tahoma, sans-serif;
-    font-size: medium;
-}
-
 .treeViewArrow {
     cursor: pointer;
     margin-right: 6;
@@ -122,6 +116,14 @@ html, body, #root, .app, .App, #app, #app>div {
     color: #000;
 }
 
+#shapeCategories div {
+    margin: 1px 0 0 0;
+    background: #f0f0f0;
+}
+
+#shapeCategories div div.shapeCategory {
+    background: lightgray;
+}
 .shapeCategory{
     font-family: "Tahoma", Verdana, Geneva, Tahoma, sans-serif;
     font-size: small;
@@ -131,10 +133,11 @@ html, body, #root, .app, .App, #app, #app>div {
     user-select: none;
     color: #000000;
     font-weight: bold;
-    background: lightgray;
     margin: 0;
     padding-left: 5px;
     padding-right: 5px;
     padding-bottom: 10px;
-    padding-top: 10px;
+    padding-top: 10px; 
 }
+
+
